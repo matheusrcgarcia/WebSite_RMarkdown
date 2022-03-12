@@ -1,0 +1,296 @@
+---
+title: "Sales Analysis"
+description: |
+  In this project I used Python Pandas & Python Matplotlib to analyze and answer business questions about 12 months worth of sales data. The data contains hundreds of thousands of electronics store purchases broken down by month, product type, cost, purchase address, etc.
+---
+
+```{r setup, include=FALSE}  
+library(knitr)  
+library(reticulate)  
+knitr::knit_engines$set(python = reticulate::eng_python)  
+```
+
+# Import Libraries 
+
+```{python}
+import pandas as pd 
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
+from itertools import combinations 
+from collections import Counter
+```
+
+
+# Loading data 
+
+```{python}
+jan = pd.read_csv("Sales_January_2019.csv")
+feb = pd.read_csv("Sales_February_2019.csv")
+mar = pd.read_csv("Sales_March_2019.csv")
+apr = pd.read_csv("Sales_April_2019.csv")
+may = pd.read_csv("Sales_May_2019.csv")
+jun = pd.read_csv("Sales_June_2019.csv")
+jul = pd.read_csv("Sales_July_2019.csv")
+aug = pd.read_csv("Sales_August_2019.csv")
+sep = pd.read_csv("Sales_September_2019.csv")
+octo = pd.read_csv("Sales_October_2019.csv")
+nov = pd.read_csv("Sales_November_2019.csv")
+dec = pd.read_csv("Sales_December_2019.csv")
+```
+
+- First look 
+
+```{python}
+jan.head()
+feb.head()
+mar.head()
+```
+
+- Merging all the dataset into one single file
+
+  - It's looks like we have the same number of columns in each dataset. Let's concatenate all of them 
+
+```{python}
+df = pd.concat([jan,feb,mar,apr,may,jun,jul,aug,sep,octo,nov,dec])
+df.head()
+```
+
+- Let's check the shape of it 
+
+```{python}
+df.shape # Looks good
+```
+
+# Questions 
+
+- To perform our analysis in this dataset I'll analyze and do the data cleaning within the questions that I want to answer. 
+
+## Question 1: Whats was the best month for sales? How much was earned that month?
+
+- We must check the dtypes of our data first:
+
+```{python}
+df.info()
+```
+
+
+- We'll collect the first 2 characters of the column "Order Date" but first we need to transform this column to string type
+
+```{python}
+df['Order Date']=df['Order Date'].astype('string')
+```
+
+
+- Now, we can see that the column "Order Date" changed to "string"
+
+```{python}
+df.info()
+```
+
+```{python}
+df["Order Date"]=df["Order Date"].str.replace("'","")
+df["Order Date"]=df["Order Date"].str.replace("b","")
+```
+
+
+- Creating a column named "Month"
+
+```{python}
+df["Month"]=df["Order Date"].str[:2]
+```
+
+- Creating a dictionary to replace the month numbers's to the respective month
+
+
+```{python}
+month_dict = {"01":"January","02":"February","03":"March","04":"April","05":"May","06":"June","07":"July",
+             "08":"August","09":"September","10":"October","11":"November","12":"December"}
+```
+
+```{python}
+df["Month"]=df["Month"].replace(month_dict)
+```
+
+- Modify the data type to numeric
+
+```{python}
+df["Price Each"]=pd.to_numeric(df["Price Each"],errors='coerce')
+df["Quantity Ordered"]=pd.to_numeric(df["Quantity Ordered"],errors='coerce')
+```
+
+- Dropping the missing values in our dataset
+
+```{python}
+df=df.dropna()
+```
+
+- Creating new column that corresponds to the total sales
+
+```{python}
+df["Total_Sales"] = df["Price Each"]*df["Quantity Ordered"]
+df.head()
+```
+
+- Creating a new variable to assign the month grouped
+
+```{python}
+best_month=df.groupby(["Month"]).sum()
+best_month.reset_index(inplace=True)
+best_month
+```
+
+- Ploting the data using seaborn
+
+```{python plot, fig.width = 2}
+sns.barplot(x="Total_Sales", y="Month", data=best_month);
+plt.show()
+```
+
+## Question 2: Whats was the best month for sales? How much was earned that month?
+
+- Changing the datatype on the column "Purchase Address"
+
+```{python}
+df["Purchase Address"]=df["Purchase Address"].astype('string')
+```
+
+- Creating a new variable thats contains the city code
+
+```{python}
+city=df["Purchase Address"].str.split(pat=",",expand=True)
+```
+
+- Creating a new colunm to assign the values from the cities
+
+```{python}
+df["City"]=city[1]
+```
+
+- Let´s check how our df looks like now
+
+```{python}
+df.head()
+```
+
+- Creating a new variable that contains info for cities grouped
+
+```{python}
+best_city=df.groupby(["City"]).sum()
+best_city.reset_index(inplace=True)
+```
+
+- Plotting the data
+
+```{python}
+sns.barplot(x="Total_Sales", y="City", data=best_city);
+plt.show()
+```
+
+## Question 3: What time we should display the advertisements to maxime the likelihood of customer's buying products?
+
+- Changing the datetype to datetime to be able to extract the hour
+
+```{python}
+df["Order Date"]=pd.to_datetime(df["Order Date"])
+df["Hour"]=df["Order Date"].dt.hour
+```
+
+- Creating a new variable the contains the info about hour grouped
+
+```{python}
+hour=df.groupby("Hour").sum()
+hour.reset_index(inplace=True)
+```
+
+- Plotting using seaborn
+
+```{python}
+sns.lineplot(data=hour, x="Hour", y="Total_Sales");
+plt.xticks(hour["Hour"]);
+plt.grid();
+plt.show()
+```
+
+## Question 4: What products are most often sold together?
+
+- The products are sold together when they have the same order ID, therefore we need only the row that have the same number for Order ID, and we'll assign it to a new dataframe
+
+```{python}
+products=df[df["Order ID"].duplicated(keep=False)]
+products.head()
+```
+
+- Now, we'll join the produts which has the same order ID (grouped) and we'll create a new column. After that, we'll remove the duplicates
+
+```{python}
+products["Grouped"]=products.groupby("Order ID")["Product"].transform(lambda x:', '.join(x))
+products=products[["Order ID", "Grouped"]].drop_duplicates()
+```
+
+- Here we'll iterate the column Grouped to combine the values that has the same info in their row 
+
+```{python}
+count=Counter()
+for row in products["Grouped"]:
+    row_list=row.split(',')
+    count.update(Counter(combinations(row_list,2)))
+    
+for key,value in count.most_common(1):
+    print("Produts that are more often sold together are:", key)
+```
+
+## Question 5: What product sold the most? Why do you think it sold the most?
+
+- To find this answer we need to create a new variable and assign the product column grouped 
+
+```{python}
+sold_most1=df.groupby("Product")["Quantity Ordered"].sum()
+sold_most=pd.DataFrame(data=sold_most1) # Creating a dataframe 
+sold_most.reset_index(inplace=True)
+sold_most=sold_most.sort_values(by='Quantity Ordered',ascending=False)
+sold_most.iloc[0] # Answer
+```
+
+- Plotting in sns
+
+```{python}
+sns.barplot(x="Quantity Ordered",y="Product",data=sold_most,palette='rocket');
+plt.show()
+```
+
+- Plotting in plt
+
+```{python}
+plt.bar(sold_most["Product"],sold_most["Quantity Ordered"]);
+plt.xticks(sold_most["Product"],rotation='vertical');
+plt.show()
+```
+
+- The AAA Batteries are the most sold product. My hypothesis it is because they are very cheap product. Lets confirm or not this statement
+
+  - Lets create a new dataframe with the mean values of the product prices
+
+```{python}
+cheap1=df.groupby("Product")["Price Each"].mean()
+cheap=pd.DataFrame(data=cheap1)
+cheap.reset_index(inplace=True)
+cheap
+```
+
+- Now, we'll merge those both dataframe to create a visualization plot with both y axes
+
+```{python}
+merg=pd.merge(sold_most,cheap,how='inner')
+```
+
+- Plotting
+
+```{python}
+sns.barplot(x="Product",y="Quantity Ordered",data=merg);
+plt.xticks(rotation=90);
+ax2 = plt.twinx();
+sns.lineplot(x="Product",y="Price Each",data=merg, color="b", ax=ax2);
+plt.show()
+```
+

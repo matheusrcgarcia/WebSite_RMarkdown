@@ -1,0 +1,28 @@
+---
+title: "Welcome"
+description: |
+  This is my portfolio website! 
+  
+  Hope you have a great experience.
+site: distill::distill_website
+---
+
+Here you will find my projects using **Python, R, SQL and Tableau** and also on "ABOUT", more information that you can use to contact me. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+[**PORTFOLIO**](content.html){width=7%}:
+![Portolio](https://img.icons8.com/external-colours-bomsymbols-/91/000000/external-click-hand-conversation-colours-colours-bomsymbols--2.png){width=7%}
+
+
+
+
+
+
+

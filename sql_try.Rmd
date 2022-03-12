@@ -1,0 +1,264 @@
+---
+title: "SQL Data Exploration"
+description: |
+  For this beginner-mid level project I used a Covid dataset as my base to use queries to explore the information that the dataset contains. Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types.
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Importing Libraries 
+
+```{r Connections}
+library(RODBC)
+library(DBI)
+library(odbc)
+#conn1 <- odbcConnect("SQLServer_DSN")
+#sqlQuery(conn1, "Select * from covid_death")
+```
+
+# Establishing Connection
+
+In order to use SQL databases, you must establish connection with Microsoft SQL Server. One way to do that, is using "dbConnect":
+
+```{r}
+conn2 <- dbConnect(odbc:: odbc(),"SQLServer_DSN" )
+```
+
+# First View
+
+Let's take a first look into our data:
+
+```{sql connection=conn2, output.var="firstview1"}
+SELECT * 
+FROM "Portfolio"."dbo"."covid_death"
+WHERE continent IS NOT NULL
+ORDER BY 3,4
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(firstview1, options = list(rows.print = 10, cols.print = 5))
+```
+
+# Data Exploration
+
+## Selecting Data
+
+Select the data the we are going to be starting with
+
+```{sql connection=conn2, output.var="selectdata1"}
+SELECT location, date, total_cases, new_cases, total_deaths, population
+FROM "Portfolio"."dbo"."covid_death"
+WHERE continent IS NOT NULL
+ORDER BY 1,2
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(selectdata1, options = list(rows.print = 10, cols.print = 5))
+```
+
+- We can see on page 2, that in Afghanistan, the first death started approximately one month after the first confirmed case. After this date, the number of deaths ramps a lot. 
+
+
+## Looking at Total Cases Vs Total Deaths
+
+How many cases there is in this country and how many deaths they have per the total number of cases (in percentage). I can say that this shows likelihood of dying if you contract covid in your country. For this example I will use "Brazil" as the country that will be looking. 
+
+```{sql connection=conn2, output.var="lookdata1"}
+SELECT location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS DeathPercentage
+FROM "Portfolio"."dbo"."covid_death"
+WHERE location LIKE '%Brazil%'
+AND continent IS NOT NULL 
+ORDER BY 1,2
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(lookdata1, options = list(rows.print = 10, cols.print = 5))
+```
+
+- We can see on the last page, that the Death Percentage in Brazil on 2022/02/28 is approximately **2.25%**.
+
+
+## Total Cases vs Population 
+
+Shows what percentage of population that was infected with Covid in Brazil.
+
+```{sql connection=conn2, output.var="infecdata1"}
+SELECT location, date, Population, total_cases,  ROUND((total_cases/population),5)*100 AS PercentPopulationInfected
+FROM "Portfolio"."dbo"."covid_death"
+WHERE location LIKE '%Brazil%'
+AND continent IS NOT NULL 
+ORDER BY 1,2
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(infecdata1, options = list(rows.print = 10, cols.print = 5))
+```
+
+- We can see on page 15 that on 2020/07/20, Brazil had almost **1%** of their whole population infected by Covid.
+
+
+## Countries with Highest Infection Rate compared to Population
+
+
+```{sql connection=conn2, output.var="contryhigh1"}
+SELECT location, Population, MAX(total_cases) AS HighestInfectionCount,  MAX(ROUND((total_cases/population),4))*100 AS PercentPopulationInfected
+FROM "Portfolio"."dbo"."covid_death"
+GROUP BY location, population
+ORDER BY PercentPopulationInfected DESC
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(contryhigh1, options = list(rows.print = 10, cols.print = 5))
+```
+
+- Right on the first page, we can see that the country with the highest percent of his population infect is Faeroe Islands with almost **70%**.
+
+## Countries with Highest Death Count per Population
+
+```{sql connection=conn2, output.var="contrydeath1"}
+SELECT location, Population, MAX(cast(Total_deaths as int)) as TotalDeathCount
+FROM "Portfolio"."dbo"."covid_death"
+WHERE continent IS NOT NULL
+GROUP BY location, Population
+ORDER BY TotalDeathCount DESC
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(contrydeath1, options = list(rows.print = 10, cols.print = 5))
+```
+
+- The country with the highest death county in the whole world is *United States*, with 9504900 deaths. Even with a very large population, we can compare the *indian* results. *India*, even with a larger population than US, the number of deaths was smaller. 
+
+## Breaking things down by Continent
+
+```{sql connection=conn2, include=FALSE, output.var="contdeath1"}
+SELECT continent, MAX(cast(Total_deaths as int)) as TotalDeathCount
+FROM "Portfolio"."dbo"."covid_death"
+WHERE continent IS NOT NULL
+GROUP BY continent
+ORDER BY TotalDeathCount DESC
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(contdeath1, options = list(rows.print = 10, cols.print = 5))
+```
+
+- We can see that the continent with the highest number of deaths is *North America*, followed by *South America* and *Asia*. 
+
+
+## GLOBAL NUMBERS
+
+```{sql connection=conn2}
+SELECT SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(New_Cases)*100 as DeathPercentage
+FROM "Portfolio"."dbo"."covid_death"
+WHERE continent IS NOT NULL
+ORDER BY 1,2
+```
+
+
+- The death percentage in the whole world is almost *1.37%* by Covid.
+
+## Total Population vs Vaccinations
+
+Shows Percentage of Population that has received at least one Covid Vaccine, during the pandemic. 
+
+```{sql connection=conn2, output.var="vac11"}
+SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
+, SUM(CAST(vac.new_vaccinations AS float)) OVER (Partition BY dea.Location ORDER BY dea.location, dea.Date) AS RollingPeopleVaccinated
+FROM "Portfolio"."dbo"."covid_death" dea
+JOIN "Portfolio"."dbo"."covid_vaccinations" vac
+	ON dea.location = vac.location
+	AND dea.date = vac.date
+WHERE dea.continent IS NOT NULL
+AND dea.location LIKE '%Brazil%' 
+ORDER BY 2,3
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(vac11, options = list(rows.print = 10, cols.print = 6))
+```
+
+- We can see that the first vaccination in Brazil happened only in 2021/01/18.
+- Because we can not use the column that we just created to perform operation in SQL, we need to CTE or Temp Tables. So let's start with the first one: 
+
+
+## CTE
+
+Using CTE to perform Calculation on Partition By in previous query
+
+
+```{sql connection=conn2, output.var="vac21"}
+With PopvsVac (Continent, Location, Date, Population, New_Vaccinations, RollingPeopleVaccinated)
+as
+(
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
+, SUM(CAST(vac.new_vaccinations AS float)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
+From Portfolio..covid_death dea
+Join Portfolio..covid_vaccinations vac
+	On dea.location = vac.location
+	and dea.date = vac.date
+where dea.continent is not null 
+AND dea.location like '%Brazil%'
+)
+Select *, ROUND((RollingPeopleVaccinated/Population),6)*100 AS PercentagePopVaccinated
+From PopvsVac
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rmarkdown)
+paged_table(vac21, options = list(rows.print = 10, cols.print = 7))
+```
+
+- We can see in the last column the the percentage of population in Brazil that is vaccinated is *18.19%*.
+
+
+## Temp Table
+
+Using Temp Table to perform Calculation on Partition By in previous query
+
+
+```{sql connection=conn2, output.var="vac31"}
+DROP Table if exists #PercentPopulationVaccinated
+Create Table #PercentPopulationVaccinated
+(
+Continent nvarchar(255),
+Location nvarchar(255),
+Date datetime,
+Population numeric,
+New_vaccinations numeric,
+RollingPeopleVaccinated numeric
+)
+
+Insert into #PercentPopulationVaccinated
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
+, SUM(CAST(vac.new_vaccinations AS float)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
+From Portfolio..covid_death dea
+Join Portfolio..covid_vaccinations vac
+	On dea.location = vac.location
+	and dea.date = vac.date
+
+Select *, ROUND((RollingPeopleVaccinated/Population),4)*100 AS PctPopVacOverTime
+From #PercentPopulationVaccinated
+Where continent is not null 
+AND location like '%states%'
+```
+
+- Due limitation in *R Markdown*, I can not create a Temp Table. But to show that this code above works, I run in Microsoft SQL Server and this is the result: 
+
+![](sql_try_1.PNG){width=95%}
+
+
+
+
+

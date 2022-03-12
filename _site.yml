@@ -1,0 +1,45 @@
+name: "."
+title: "Matheus Cordeiro"
+description: |
+  Welcome To My Website
+output_dir: "_site"
+navbar:
+  right:
+    - text: "HOME"
+      href: index.html
+    - text: "PORTFOLIO"
+      href: content.html
+      menu:
+        - text: "All Projects"
+          href: content.html
+        - text: "---------"
+        - text: "Python Projects"
+        - text: "Sales Analysis"
+          href: sales_analysis.html
+        - text: "Correlation in Movie Industry"
+          href: corr_movie.html
+        - text: "Customer Segmentation" 
+          href: cluster_seg.html
+        - text: "---------"
+        - text: "R Projects"
+        - text: "Multi Linear Regression"
+          href: W3.C11.html
+        - text: "Analyzing Super Bowl Ads"
+          href: smoke_preg.html
+        - text: "Transit Cost Project"
+          href: ceo_sal.html
+        - text: "---------"
+        - text: "SQL Projects"
+        - text: "SQL Data Exploration"
+          href: sql_try.html
+        - text: "Data Cleaning in SQL"
+          href: sql_clean.html
+        - text: "---------"
+        - text: "Tableau Projects"
+          href: tableau.html 
+    - text: "ABOUT"
+      href: about.html
+output: 
+  distill::distill_article:
+    toc: true
+    theme: theme_test.css

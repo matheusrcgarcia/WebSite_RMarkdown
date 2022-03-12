@@ -1,0 +1,239 @@
+---
+title: "Correlation in Movie Industry"
+description: |
+  For this project the first questions that came to my mind was: Is the movie industry dying? Is Netflix the new entertainment king? And the best way to answer those is analyzing that dataset of four decades using Pandas, Matpoltlib and Seaborn to also understand more factors that intervene in this industry, like actors, genres, user ratings and more.
+---
+
+```{r setup, include=FALSE}  
+library(knitr)  
+library(reticulate)  
+knitr::knit_engines$set(python = reticulate::eng_python)  
+```
+
+# Import Libraries 
+
+```{python}
+import pandas as pd 
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
+plt.style.use('ggplot')
+```
+
+
+# Loading data 
+
+- Read the dataframe and look the data
+
+```{python}
+df = pd.read_csv('movies.csv')
+df.head()
+```
+
+# Cleaning (Pre Prossesing) 
+
+- We can see some missing values into df
+
+```{python}
+df.isna().sum()
+```
+
+- Let's drop all the missing values 
+
+```{python}
+df.dropna(inplace=True)
+df.isna().sum()
+```
+
+- Checking the Data types for the dataset
+
+```{python}
+df.info()
+```
+
+- For the operations that we going to do here, we need to change the type of the columns "votes", "budget" and "gross" to integer. Also for the column "released", we will modify to string to extract the year.
+
+```{python}
+df['votes']=df['votes'].astype('int64')
+df['budget']=df['budget'].astype('int64')
+df['gross']=df['gross'].astype('int64')
+df['released']=df['released'].astype('string')
+df.info()
+```
+
+- Let's see the movies that expand the most money on
+
+```{python}
+df.sort_values(by=['gross'],inplace=False,ascending=False)
+```
+
+
+# Featuring Engineering
+
+- Splitting the column to extract the year and country, by creating other dataframe
+
+```{python}
+released_df=df['released'].str.split(",",n = 1,expand = True) 
+released_df.head()
+```
+
+```{python}
+df['Day_Month']=released_df[0]
+df['Year_Correct']=released_df[1].str[:5]
+df['Country_Correct']=released_df[1].str[5:]
+df['Country_Correct']=df['Country_Correct'].str[2:-1]
+```
+
+- Now we can see looking the column "released" that the year and the country are correct
+
+```{python}
+df.head()
+```
+
+- Creating other 2 columns for month and day
+
+
+```{python}
+day_month=df['Day_Month'].str.split(" ",n = 1,expand = True) 
+df['Month']=day_month[0]
+df['Day']=day_month[1]
+df.head()
+```
+
+- Dropping the columns that we don't need anymore
+
+```{python}
+df.drop(['year','released','Day_Month','country'],axis=1,inplace=True)
+df.head()
+```
+
+- For a better undestand, let's renema some columns
+
+```{python}
+df.rename(columns={"Year_Correct": "year", "Country_Correct": "country",'Month':'month','Day':'day'},inplace=True)
+df.head()
+```
+
+
+```{python}
+df.sort_values(by=['gross'],inplace=False,ascending=False)
+```
+
+- Dropping any duplicates and change the type of the column "year" (that we have just created) to numeric
+
+```{python}
+df.drop_duplicates().head()
+df['year']=pd.to_numeric(df['year'])
+```
+
+# Hyphotesis 
+
+We going to start the make hypothesis about correlations in our dataframe. First, last assume that the column "gross" and "budget" are positive correlated and let's see if this is true 
+
+## Correlation between Gross and Budget
+
+- Let's plot a Scatter plot to compare those two variables
+
+```{python}
+sns.regplot(data=df,x='gross',y='budget',color="b",line_kws={"color":"red"});
+plt.title("Gross Vs Budget Earnings");
+plt.xlabel("Gross Earnings");
+plt.ylabel("Budget for Film");
+plt.show()
+```
+
+## Heat Map
+
+- Let's look to see if we can find other correlation
+
+```{python plot}
+corr_matrix=df.corr()
+sns.heatmap(corr_matrix,annot=True);
+plt.title("Correlation Matrix between Numeric Features");
+plt.xlabel("Movies Features");
+plt.ylabel("Movies Features");
+plt.show()
+```
+
+## Correlation between Gross and Number of Votes
+
+- Seems that gross and votes are correlated as well, so let's plot a regression too.
+
+```{python}
+sns.regplot(data=df,x='gross',y='votes',color="b",line_kws={"color":"red"});
+plt.title("Gross Vs Number of Votes");
+plt.xlabel("Gross Earnings");
+plt.ylabel("Votes");
+plt.show()
+```
+
+## Chi Square Test
+
+- Let's run another test, this time is the Chi Square test between 2 categorical variables: rating and genre 
+- Our null hypothesis is: Rating and Genre are independent and our level of confidence will be 95%
+
+```{python}
+contigency=pd.crosstab(df['rating'],df['genre'])
+contigency
+```
+
+- The p-value below 0, which means that we do not reject the null hypothesis at 95% level of confidence
+
+```{python}
+from scipy.stats import chi2_contingency
+c, p, dof, expected = chi2_contingency(contigency)
+p
+```
+
+# Extra 
+
+Here will fing correlation between categorical variable with some numerical ones.
+
+- First, we will create a copy of df. After, change the type of "rating" and "genre" to category 
+
+```{python}
+df1 = df.copy()
+df1['rating']=df1['rating'].astype('category')
+df1['genre']=df1['genre'].astype('category')
+df1.info()
+```
+
+- With this type of data type, we are able to genereate categories codes for categorical variables
+
+```{python}
+df1['rating_cat']=df1['rating'].cat.codes
+df1['genre_cat']=df1['genre'].cat.codes
+df1.head()
+```
+
+- Correlation in df1
+
+```{python}
+df1.corr()
+```
+
+- In df2, will contain the dummies of rating and genre.
+
+```{python}
+df2=pd.get_dummies(df1,columns=['rating','genre']).head()
+```
+
+- Finding the highest correlation
+
+```{python}
+df2_matrix=df2.corr()
+corr_pairs = df2_matrix.unstack()
+sorted_pairs = corr_pairs.sort_values()
+sorted_pairs.dropna()
+high_corr = sorted_pairs[(sorted_pairs)>0.7]
+high_corr
+```
+
+# Conclusions
+
+For the correlation above, we can conclude that the genre Action have a very high correlation with gross, therefore those who are looking for profit when thinking about make a movies, this a excellent genre to plan. 
+Also, the drama genre is the one which have the highest correlation with run time. We can conclude that films with lower duration are not well accpeted by those who love drama films. 
+
+Thank you! 
+
+

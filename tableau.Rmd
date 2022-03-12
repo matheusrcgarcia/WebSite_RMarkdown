@@ -1,0 +1,131 @@
+---
+title: "Tableau Projects"
+description: |
+  Here you will find my projects using this powerful visualization tool, Tableau. There is two ways for see my Dashboards/ Worksheets: First, view embedded here on this website, and the second is to visit my Tableau Public Server (CLICK THE FIRST HEADER). 
+  Hope you enjoy! 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## [Tableau Site](https://public.tableau.com/app/profile/matheus.ragghianti.cordeiro.de.garcia#!/) 
+
+Click on this header and you will automatically redirect to my Tableau site, where you can find all my projects as well. 
+
+## Tableau Projects 
+
+### Evaluation Business Process - Part 1
+
+I will go through a series of questions that helps to understand how data from different aspects of each business process can answer a variety of questions depending on the managerial perspective. 
+
+Also, I will be looking at the order-to-cash process or sales/revenue cycle within a company, summarizing flows of sales order, transactions, accounts receivables, and customer activity. 
+
+
+<iframe src="https://public.tableau.com/views/EvaluatingBusinessProcess-Part1/EvaluatingBusinessProcess-Part1?:language=en-US&::showVizHome=no&:embed=true"
+ width="745" height="555"></iframe>
+ 
+ **Where "AR By Customer" means the Accounts Receivable by Customer and "DSO" means "Days Outstanding KPI".**
+
+#### How efficiently are we collecting our Cash?
+
+- What are the total Sales For 2020?
+  - $ 5.103, 763
+
+- Which quarter has the highest sales? 
+  - Q3
+
+- What does it mean if some of the accounts have a negative age?
+  - The accounts receivable is due in the future
+  
+- What is the current days sales outstanding KPI value?
+  - Almost 77 days. 
+
+- Which customer had the most sales? How much did we sell to that customer? 
+  - Yahir Mercer, almost 14k
+
+
+### Evaluation Business Process - Part 2
+
+<iframe src="https://public.tableau.com/views/EvaluatingBusinessProcess-Part2/EvaluatingBusinessProcess-Part2?:language=en-US&::showVizHome=no&:embed=true"
+ width="745" height="555"></iframe>
+
+- What is the value of open accounts that are between 60 and 90 days old?
+  - Approximately 75k accounts. 
+  
+  
+- If management expects about 5 percent of the accounts receivables to be written off, which month(s) exceeded that estimate?
+  - February and July.
+  
+
+### Procure-To-Pay Process (P2P)
+
+The procure-to-pay process or purchasing cylce for a relatiler involves four main processes: 
+
+- Create and submit a purchase order;
+- Receive inventory; 
+- Receive an invoice; 
+- Pay the invoice. 
+
+The P2P process has some additional challenges in that there are numerous opportunities to divert company funds. Therefore, we should focus on the risk of unauthorized and fictitious payments (e.g, to shell vendors) and ensure that the process is appropriately controlled. 
+
+<iframe src="https://public.tableau.com/views/ProcureToPayProcessP2P/ProcureToPayProcessP2P?:language=en-US&::showVizHome=no&:embed=true"
+ width="745" height="555"></iframe>
+
+**The worksheet "Outliers" calculate de Z-Scores to determine which suppliers are receiving an abnormally high amount of purchases** 
+
+
+- What are the total purchases for 2020? 
+  - Almost 1.8 Million Dollars 
+  
+- Which quarter had the highest total purchases?
+  - Q2
+
+- Which supplier did we purchase the most from? How much did we purchase from that supplier?
+  - Medianix. We purchased $715.329,00 from them. 
+
+- How much discount (in dollars) have we forfeited from our top three suppliers?
+  - Medianix: $ 3,669 
+  - Wareholding: $ 1,195
+  - Vaia-tom: $ 826
+
+
+### Analyzing Dillard's Data 
+
+I'll be analyzing the returned sales to find explanatory (independent) variables using descriptive and exploratory analytics. 
+
+#### Part 1 
+
+<iframe src="https://public.tableau.com/views/ReturnsByCenturyVsStates/ReturnsByCenturyVsStates?:language=en-US&::showVizHome=no&:embed=true"
+ width="745" height="555"></iframe>
+
+**Tran Type "R" means Returned Sales**
+
+- Which Century has the highest sum of returns in Utah?
+  - Ready To Wear
+  
+- Which state has a higher sum of returns in the Cosmetics century than any other?
+  - Texas
+  
+#### Part 2
+
+<iframe src="https://public.tableau.com/views/ReturnsByMonthVsSandbox/ReturnsByMonthVsSandbox?:language=en-US&::showVizHome=no&:embed=true"
+ width="745" height="555"></iframe>
+
+- Which month saw the highest sum of returns in 2016? 2015? 2014?
+  - 2014: December
+  - 2015: December
+  - 2016: January
+  
+- Which month has the highest percentage of returned sales in 2014 and 2015?
+  - January
+  
+
+
+
+
+
+
+
+
+
