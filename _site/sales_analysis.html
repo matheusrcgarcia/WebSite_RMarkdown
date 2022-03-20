@@ -2456,11 +2456,12 @@ PORTFOLIO
 <li><a href="#questions">Questions</a>
 <ul>
 <li><a href="#question-1-whats-was-the-best-month-for-sales-how-much-was-earned-that-month">Question 1: Whats was the best month for sales? How much was earned that month?</a></li>
-<li><a href="#question-2-whats-was-the-best-month-for-sales-how-much-was-earned-that-month">Question 2: Whats was the best month for sales? How much was earned that month?</a></li>
+<li><a href="#question-2-what-city-had-the-highest-number-of-sales">Question 2: What city had the highest number of sales?</a></li>
 <li><a href="#question-3-what-time-we-should-display-the-advertisements-to-maxime-the-likelihood-of-customers-buying-products">Question 3: What time we should display the advertisements to maxime the likelihood of customer’s buying products?</a></li>
 <li><a href="#question-4-what-products-are-most-often-sold-together">Question 4: What products are most often sold together?</a></li>
 <li><a href="#question-5-what-product-sold-the-most-why-do-you-think-it-sold-the-most">Question 5: What product sold the most? Why do you think it sold the most?</a></li>
 </ul></li>
+<li><a href="#conclusions">Conclusions</a></li>
 </ul>
 </nav>
 </div>
@@ -2492,33 +2493,624 @@ PORTFOLIO
 <li>First look</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>jan.head()</span></code></pre></div>
-<pre><code>  Order ID  ...                       Purchase Address
-0   141234  ...        944 Walnut St, Boston, MA 02215
-1   141235  ...       185 Maple St, Portland, OR 97035
-2   141236  ...  538 Adams St, San Francisco, CA 94016
-3   141237  ...     738 10th St, Los Angeles, CA 90001
-4   141238  ...          387 10th St, Austin, TX 73301
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>jan_head<span class="op">=</span>jan.head()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>jan_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 6 columns]</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>feb.head()</span></code></pre></div>
-<pre><code>  Order ID  ...                     Purchase Address
-0   150502  ...    866 Spruce St, Portland, ME 04101
-1   150503  ...  18 13th St, San Francisco, CA 94016
-2   150504  ...   52 6th St, New York City, NY 10001
-3   150505  ...     129 Cherry St, Atlanta, GA 30301
-4   150506  ...    548 Lincoln St, Seattle, WA 98101
+<thead>
 
-[5 rows x 6 columns]</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mar.head()</span></code></pre></div>
-<pre><code>  Order ID  ...                      Purchase Address
-0   162009  ...       942 Church St, Austin, TX 73301
-1   162009  ...       942 Church St, Austin, TX 73301
-2   162009  ...       942 Church St, Austin, TX 73301
-3   162010  ...  261 10th St, San Francisco, CA 94016
-4   162011  ...  764 13th St, San Francisco, CA 94016
+<tr style="text-align: right;">
 
-[5 rows x 6 columns]</code></pre>
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+141234
+</td>
+
+<td>
+iPhone
+</td>
+
+<td>
+1
+</td>
+
+<td>
+700
+</td>
+
+<td>
+01/22/19 21:25
+</td>
+
+<td>
+944 Walnut St, Boston, MA 02215
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+141235
+</td>
+
+<td>
+Lightning Charging Cable
+</td>
+
+<td>
+1
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+01/28/19 14:15
+</td>
+
+<td>
+185 Maple St, Portland, OR 97035
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+141236
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+2
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/17/19 13:33
+</td>
+
+<td>
+538 Adams St, San Francisco, CA 94016
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+141237
+</td>
+
+<td>
+27in FHD Monitor
+</td>
+
+<td>
+1
+</td>
+
+<td>
+149.99
+</td>
+
+<td>
+01/05/19 20:33
+</td>
+
+<td>
+738 10th St, Los Angeles, CA 90001
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+141238
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+1
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/25/19 11:59
+</td>
+
+<td>
+387 10th St, Austin, TX 73301
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>feb_head<span class="op">=</span>feb.head()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>feb_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
+
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+150502
+</td>
+
+<td>
+iPhone
+</td>
+
+<td>
+1
+</td>
+
+<td>
+700
+</td>
+
+<td>
+02/18/19 01:35
+</td>
+
+<td>
+866 Spruce St, Portland, ME 04101
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+150503
+</td>
+
+<td>
+AA Batteries (4-pack)
+</td>
+
+<td>
+1
+</td>
+
+<td>
+3.84
+</td>
+
+<td>
+02/13/19 07:24
+</td>
+
+<td>
+18 13th St, San Francisco, CA 94016
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+150504
+</td>
+
+<td>
+27in 4K Gaming Monitor
+</td>
+
+<td>
+1
+</td>
+
+<td>
+389.99
+</td>
+
+<td>
+02/18/19 09:46
+</td>
+
+<td>
+52 6th St, New York City, NY 10001
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+150505
+</td>
+
+<td>
+Lightning Charging Cable
+</td>
+
+<td>
+1
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+02/02/19 16:47
+</td>
+
+<td>
+129 Cherry St, Atlanta, GA 30301
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+150506
+</td>
+
+<td>
+AA Batteries (4-pack)
+</td>
+
+<td>
+2
+</td>
+
+<td>
+3.84
+</td>
+
+<td>
+02/28/19 20:32
+</td>
+
+<td>
+548 Lincoln St, Seattle, WA 98101
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mar_head<span class="op">=</span>mar.head()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mar_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
+
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+162009
+</td>
+
+<td>
+iPhone
+</td>
+
+<td>
+1
+</td>
+
+<td>
+700
+</td>
+
+<td>
+03/28/19 20:59
+</td>
+
+<td>
+942 Church St, Austin, TX 73301
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+162009
+</td>
+
+<td>
+Lightning Charging Cable
+</td>
+
+<td>
+1
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+03/28/19 20:59
+</td>
+
+<td>
+942 Church St, Austin, TX 73301
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+162009
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+2
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+03/28/19 20:59
+</td>
+
+<td>
+942 Church St, Austin, TX 73301
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+162010
+</td>
+
+<td>
+Bose SoundSport Headphones
+</td>
+
+<td>
+1
+</td>
+
+<td>
+99.99
+</td>
+
+<td>
+03/17/19 05:39
+</td>
+
+<td>
+261 10th St, San Francisco, CA 94016
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+162011
+</td>
+
+<td>
+34in Ultrawide Monitor
+</td>
+
+<td>
+1
+</td>
+
+<td>
+379.99
+</td>
+
+<td>
+03/10/19 00:01
+</td>
+
+<td>
+764 13th St, San Francisco, CA 94016
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <ul>
 <li><p>Merging all the dataset into one single file</p>
@@ -2527,22 +3119,219 @@ PORTFOLIO
 </ul></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([jan,feb,mar,apr,may,jun,jul,aug,sep,octo,nov,dec])</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
-<pre><code>  Order ID  ...                       Purchase Address
-0   141234  ...        944 Walnut St, Boston, MA 02215
-1   141235  ...       185 Maple St, Portland, OR 97035
-2   141236  ...  538 Adams St, San Francisco, CA 94016
-3   141237  ...     738 10th St, Los Angeles, CA 90001
-4   141238  ...          387 10th St, Austin, TX 73301
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([jan,feb,mar,apr,may,jun,jul,aug,sep,octo,nov,dec])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_head <span class="op">=</span> df.head()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 6 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+141234
+</td>
+
+<td>
+iPhone
+</td>
+
+<td>
+1
+</td>
+
+<td>
+700
+</td>
+
+<td>
+01/22/19 21:25
+</td>
+
+<td>
+944 Walnut St, Boston, MA 02215
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+141235
+</td>
+
+<td>
+Lightning Charging Cable
+</td>
+
+<td>
+1
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+01/28/19 14:15
+</td>
+
+<td>
+185 Maple St, Portland, OR 97035
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+141236
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+2
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/17/19 13:33
+</td>
+
+<td>
+538 Adams St, San Francisco, CA 94016
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+141237
+</td>
+
+<td>
+27in FHD Monitor
+</td>
+
+<td>
+1
+</td>
+
+<td>
+149.99
+</td>
+
+<td>
+01/05/19 20:33
+</td>
+
+<td>
+738 10th St, Los Angeles, CA 90001
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+141238
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+1
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/25/19 11:59
+</td>
+
+<td>
+387 10th St, Austin, TX 73301
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <ul>
 <li>Let’s check the shape of it</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.shape <span class="co"># Looks good</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.shape  <span class="co">#Looks good</span></span></code></pre></div>
 <pre><code>(186850, 6)</code></pre>
 </div>
 <h1 id="questions">Questions</h1>
@@ -2554,7 +3343,7 @@ PORTFOLIO
 <li>We must check the dtypes of our data first:</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 Int64Index: 186850 entries, 0 to 25116
 Data columns (total 6 columns):
@@ -2573,13 +3362,13 @@ memory usage: 10.0+ MB</code></pre>
 <li>We’ll collect the first 2 characters of the column “Order Date” but first we need to transform this column to string type</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;Order Date&#39;</span>]<span class="op">=</span>df[<span class="st">&#39;Order Date&#39;</span>].astype(<span class="st">&#39;string&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;Order Date&#39;</span>]<span class="op">=</span>df[<span class="st">&#39;Order Date&#39;</span>].astype(<span class="st">&#39;string&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Now, we can see that the column “Order Date” changed to “string”</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 Int64Index: 186850 entries, 0 to 25116
 Data columns (total 6 columns):
@@ -2595,60 +3384,305 @@ dtypes: object(5), string(1)
 memory usage: 10.0+ MB</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Order Date&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].<span class="bu">str</span>.replace(<span class="st">&quot;&#39;&quot;</span>,<span class="st">&quot;&quot;</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Order Date&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].<span class="bu">str</span>.replace(<span class="st">&quot;b&quot;</span>,<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Order Date&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].<span class="bu">str</span>.replace(<span class="st">&quot;&#39;&quot;</span>,<span class="st">&quot;&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Order Date&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].<span class="bu">str</span>.replace(<span class="st">&quot;b&quot;</span>,<span class="st">&quot;&quot;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Creating a column named “Month”</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Month&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].<span class="bu">str</span>[:<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Month&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].<span class="bu">str</span>[:<span class="dv">2</span>]</span></code></pre></div>
 </div>
 <ul>
 <li>Creating a dictionary to replace the month numbers’s to the respective month</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>month_dict <span class="op">=</span> {<span class="st">&quot;01&quot;</span>:<span class="st">&quot;January&quot;</span>,<span class="st">&quot;02&quot;</span>:<span class="st">&quot;February&quot;</span>,<span class="st">&quot;03&quot;</span>:<span class="st">&quot;March&quot;</span>,<span class="st">&quot;04&quot;</span>:<span class="st">&quot;April&quot;</span>,<span class="st">&quot;05&quot;</span>:<span class="st">&quot;May&quot;</span>,<span class="st">&quot;06&quot;</span>:<span class="st">&quot;June&quot;</span>,<span class="st">&quot;07&quot;</span>:<span class="st">&quot;July&quot;</span>,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;08&quot;</span>:<span class="st">&quot;August&quot;</span>,<span class="st">&quot;09&quot;</span>:<span class="st">&quot;September&quot;</span>,<span class="st">&quot;10&quot;</span>:<span class="st">&quot;October&quot;</span>,<span class="st">&quot;11&quot;</span>:<span class="st">&quot;November&quot;</span>,<span class="st">&quot;12&quot;</span>:<span class="st">&quot;December&quot;</span>}</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>month_dict <span class="op">=</span> {<span class="st">&quot;01&quot;</span>:<span class="st">&quot;January&quot;</span>,<span class="st">&quot;02&quot;</span>:<span class="st">&quot;February&quot;</span>,<span class="st">&quot;03&quot;</span>:<span class="st">&quot;March&quot;</span>,<span class="st">&quot;04&quot;</span>:<span class="st">&quot;April&quot;</span>,<span class="st">&quot;05&quot;</span>:<span class="st">&quot;May&quot;</span>,<span class="st">&quot;06&quot;</span>:<span class="st">&quot;June&quot;</span>,<span class="st">&quot;07&quot;</span>:<span class="st">&quot;July&quot;</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;08&quot;</span>:<span class="st">&quot;August&quot;</span>,<span class="st">&quot;09&quot;</span>:<span class="st">&quot;September&quot;</span>,<span class="st">&quot;10&quot;</span>:<span class="st">&quot;October&quot;</span>,<span class="st">&quot;11&quot;</span>:<span class="st">&quot;November&quot;</span>,<span class="st">&quot;12&quot;</span>:<span class="st">&quot;December&quot;</span>}</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Month&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Month&quot;</span>].replace(month_dict)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Month&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Month&quot;</span>].replace(month_dict)</span></code></pre></div>
 </div>
 <ul>
 <li>Modify the data type to numeric</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Price Each&quot;</span>]<span class="op">=</span>pd.to_numeric(df[<span class="st">&quot;Price Each&quot;</span>],errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Quantity Ordered&quot;</span>]<span class="op">=</span>pd.to_numeric(df[<span class="st">&quot;Quantity Ordered&quot;</span>],errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Price Each&quot;</span>]<span class="op">=</span>pd.to_numeric(df[<span class="st">&quot;Price Each&quot;</span>],errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Quantity Ordered&quot;</span>]<span class="op">=</span>pd.to_numeric(df[<span class="st">&quot;Quantity Ordered&quot;</span>],errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Dropping the missing values in our dataset</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>df.dropna()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>df.dropna()</span></code></pre></div>
 </div>
 <ul>
 <li>Creating new column that corresponds to the total sales</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Total_Sales&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;Price Each&quot;</span>]<span class="op">*</span>df[<span class="st">&quot;Quantity Ordered&quot;</span>]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
-<pre><code>  Order ID                   Product  ...    Month  Total_Sales
-0   141234                    iPhone  ...  January       700.00
-1   141235  Lightning Charging Cable  ...  January        14.95
-2   141236          Wired Headphones  ...  January        23.98
-3   141237          27in FHD Monitor  ...  January       149.99
-4   141238          Wired Headphones  ...  January        11.99
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Total_Sales&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;Price Each&quot;</span>]<span class="op">*</span>df[<span class="st">&quot;Quantity Ordered&quot;</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_head <span class="op">=</span> df.head()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 8 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+<th>
+Month
+</th>
+
+<th>
+Total_Sales
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+141234
+</td>
+
+<td>
+iPhone
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+700.00
+</td>
+
+<td>
+01/22/19 21:25
+</td>
+
+<td>
+944 Walnut St, Boston, MA 02215
+</td>
+
+<td>
+January
+</td>
+
+<td>
+700.00
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+141235
+</td>
+
+<td>
+Lightning Charging Cable
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+01/28/19 14:15
+</td>
+
+<td>
+185 Maple St, Portland, OR 97035
+</td>
+
+<td>
+January
+</td>
+
+<td>
+14.95
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+141236
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+2.0
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/17/19 13:33
+</td>
+
+<td>
+538 Adams St, San Francisco, CA 94016
+</td>
+
+<td>
+January
+</td>
+
+<td>
+23.98
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+141237
+</td>
+
+<td>
+27in FHD Monitor
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+149.99
+</td>
+
+<td>
+01/05/19 20:33
+</td>
+
+<td>
+738 10th St, Los Angeles, CA 90001
+</td>
+
+<td>
+January
+</td>
+
+<td>
+149.99
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+141238
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/25/19 11:59
+</td>
+
+<td>
+387 10th St, Austin, TX 73301
+</td>
+
+<td>
+January
+</td>
+
+<td>
+11.99
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <ul>
 <li>Creating a new variable to assign the month grouped</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>best_month<span class="op">=</span>df.groupby([<span class="st">&quot;Month&quot;</span>]).<span class="bu">sum</span>()</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>best_month.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>best_month</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>best_month<span class="op">=</span>df.groupby([<span class="st">&quot;Month&quot;</span>]).<span class="bu">sum</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>best_month.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>best_month</span></code></pre></div>
 <pre><code>        Month  Quantity Ordered  Price Each  Total_Sales
 0       April           20558.0  3367671.02   3390670.24
 1      August           13448.0  2230345.42   2244467.88
@@ -2667,117 +3701,688 @@ memory usage: 10.0+ MB</code></pre>
 <li>Ploting the data using seaborn</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Total_Sales&quot;</span>, y<span class="op">=</span><span class="st">&quot;Month&quot;</span>, data<span class="op">=</span>best_month)<span class="op">;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="sales_analysis_files/figure-html5/plot-1.png" width="576" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Total_Sales&quot;</span>, y<span class="op">=</span><span class="st">&quot;Month&quot;</span>, data<span class="op">=</span>best_month)<span class="op">;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-17-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<h2 id="question-2-whats-was-the-best-month-for-sales-how-much-was-earned-that-month">Question 2: Whats was the best month for sales? How much was earned that month?</h2>
+<ul>
+<li>December was the best month for sales. The total earned this month was $4.613.443,34.</li>
+</ul>
+<h2 id="question-2-what-city-had-the-highest-number-of-sales">Question 2: What city had the highest number of sales?</h2>
 <ul>
 <li>Changing the datatype on the column “Purchase Address”</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Purchase Address&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Purchase Address&quot;</span>].astype(<span class="st">&#39;string&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Purchase Address&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Purchase Address&quot;</span>].astype(<span class="st">&#39;string&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Creating a new variable thats contains the city code</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>city<span class="op">=</span>df[<span class="st">&quot;Purchase Address&quot;</span>].<span class="bu">str</span>.split(pat<span class="op">=</span><span class="st">&quot;,&quot;</span>,expand<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>city<span class="op">=</span>df[<span class="st">&quot;Purchase Address&quot;</span>].<span class="bu">str</span>.split(pat<span class="op">=</span><span class="st">&quot;,&quot;</span>,expand<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Creating a new colunm to assign the values from the cities</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;City&quot;</span>]<span class="op">=</span>city[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;City&quot;</span>]<span class="op">=</span>city[<span class="dv">1</span>]</span></code></pre></div>
 </div>
 <ul>
 <li>Let´s check how our df looks like now</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
-<pre><code>  Order ID                   Product  ...  Total_Sales            City
-0   141234                    iPhone  ...       700.00          Boston
-1   141235  Lightning Charging Cable  ...        14.95        Portland
-2   141236          Wired Headphones  ...        23.98   San Francisco
-3   141237          27in FHD Monitor  ...       149.99     Los Angeles
-4   141238          Wired Headphones  ...        11.99          Austin
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df_head <span class="op">=</span> df.head()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 9 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+<th>
+Month
+</th>
+
+<th>
+Total_Sales
+</th>
+
+<th>
+City
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+141234
+</td>
+
+<td>
+iPhone
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+700.00
+</td>
+
+<td>
+01/22/19 21:25
+</td>
+
+<td>
+944 Walnut St, Boston, MA 02215
+</td>
+
+<td>
+January
+</td>
+
+<td>
+700.00
+</td>
+
+<td>
+Boston
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+141235
+</td>
+
+<td>
+Lightning Charging Cable
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+01/28/19 14:15
+</td>
+
+<td>
+185 Maple St, Portland, OR 97035
+</td>
+
+<td>
+January
+</td>
+
+<td>
+14.95
+</td>
+
+<td>
+Portland
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+141236
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+2.0
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/17/19 13:33
+</td>
+
+<td>
+538 Adams St, San Francisco, CA 94016
+</td>
+
+<td>
+January
+</td>
+
+<td>
+23.98
+</td>
+
+<td>
+San Francisco
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+141237
+</td>
+
+<td>
+27in FHD Monitor
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+149.99
+</td>
+
+<td>
+01/05/19 20:33
+</td>
+
+<td>
+738 10th St, Los Angeles, CA 90001
+</td>
+
+<td>
+January
+</td>
+
+<td>
+149.99
+</td>
+
+<td>
+Los Angeles
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+141238
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+01/25/19 11:59
+</td>
+
+<td>
+387 10th St, Austin, TX 73301
+</td>
+
+<td>
+January
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+Austin
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <ul>
 <li>Creating a new variable that contains info for cities grouped</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>best_city<span class="op">=</span>df.groupby([<span class="st">&quot;City&quot;</span>]).<span class="bu">sum</span>()</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>best_city.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>best_city<span class="op">=</span>df.groupby([<span class="st">&quot;City&quot;</span>]).<span class="bu">sum</span>()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>best_city.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Plotting the data</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Total_Sales&quot;</span>, y<span class="op">=</span><span class="st">&quot;City&quot;</span>, data<span class="op">=</span>best_city)<span class="op">;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-22-3.png" width="576" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Total_Sales&quot;</span>, y<span class="op">=</span><span class="st">&quot;City&quot;</span>, data<span class="op">=</span>best_city)<span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-23-3.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
+<ul>
+<li>The city which had the highest number of sales was <strong>San Francisco</strong></li>
+</ul>
 <h2 id="question-3-what-time-we-should-display-the-advertisements-to-maxime-the-likelihood-of-customers-buying-products">Question 3: What time we should display the advertisements to maxime the likelihood of customer’s buying products?</h2>
 <ul>
 <li>Changing the datetype to datetime to be able to extract the hour</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Order Date&quot;</span>]<span class="op">=</span>pd.to_datetime(df[<span class="st">&quot;Order Date&quot;</span>])</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Hour&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].dt.hour</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Order Date&quot;</span>]<span class="op">=</span>pd.to_datetime(df[<span class="st">&quot;Order Date&quot;</span>])</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Hour&quot;</span>]<span class="op">=</span>df[<span class="st">&quot;Order Date&quot;</span>].dt.hour</span></code></pre></div>
 </div>
 <ul>
 <li>Creating a new variable the contains the info about hour grouped</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>hour<span class="op">=</span>df.groupby(<span class="st">&quot;Hour&quot;</span>).<span class="bu">sum</span>()</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>hour.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>hour<span class="op">=</span>df.groupby(<span class="st">&quot;Hour&quot;</span>).<span class="bu">sum</span>()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>hour.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Plotting using seaborn</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>hour, x<span class="op">=</span><span class="st">&quot;Hour&quot;</span>, y<span class="op">=</span><span class="st">&quot;Total_Sales&quot;</span>)<span class="op">;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(hour[<span class="st">&quot;Hour&quot;</span>])<span class="op">;</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-25-5.png" width="576" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>hour, x<span class="op">=</span><span class="st">&quot;Hour&quot;</span>, y<span class="op">=</span><span class="st">&quot;Total_Sales&quot;</span>)<span class="op">;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(hour[<span class="st">&quot;Hour&quot;</span>])<span class="op">;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-26-5.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
+<ul>
+<li>The best time to display the advertisements is 19h (7 pm). My assumption that this occurs because it when people have already came back from work and they are having dinner at this moment, watching TV.</li>
+</ul>
 <h2 id="question-4-what-products-are-most-often-sold-together">Question 4: What products are most often sold together?</h2>
 <ul>
 <li>The products are sold together when they have the same order ID, therefore we need only the row that have the same number for Order ID, and we’ll assign it to a new dataframe</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>products<span class="op">=</span>df[df[<span class="st">&quot;Order ID&quot;</span>].duplicated(keep<span class="op">=</span><span class="va">False</span>)]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>products.head()</span></code></pre></div>
-<pre><code>    Order ID                   Product  ...            City  Hour
-41    141275      USB-C Charging Cable  ...          Austin    16
-42    141275          Wired Headphones  ...          Austin    16
-57    141290  Apple Airpods Headphones  ...     Los Angeles     8
-58    141290     AA Batteries (4-pack)  ...     Los Angeles     8
-133   141365           Vareebadd Phone  ...   New York City    11
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>products<span class="op">=</span>df[df[<span class="st">&quot;Order ID&quot;</span>].duplicated(keep<span class="op">=</span><span class="va">False</span>)]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>products_head<span class="op">=</span>products.head()</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>products_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 10 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Order ID
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Ordered
+</th>
+
+<th>
+Price Each
+</th>
+
+<th>
+Order Date
+</th>
+
+<th>
+Purchase Address
+</th>
+
+<th>
+Month
+</th>
+
+<th>
+Total_Sales
+</th>
+
+<th>
+City
+</th>
+
+<th>
+Hour
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+41
+</th>
+
+<td>
+141275
+</td>
+
+<td>
+USB-C Charging Cable
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+11.95
+</td>
+
+<td>
+2019-01-07 16:06:00
+</td>
+
+<td>
+610 Walnut St, Austin, TX 73301
+</td>
+
+<td>
+January
+</td>
+
+<td>
+11.95
+</td>
+
+<td>
+Austin
+</td>
+
+<td>
+16
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+42
+</th>
+
+<td>
+141275
+</td>
+
+<td>
+Wired Headphones
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+2019-01-07 16:06:00
+</td>
+
+<td>
+610 Walnut St, Austin, TX 73301
+</td>
+
+<td>
+January
+</td>
+
+<td>
+11.99
+</td>
+
+<td>
+Austin
+</td>
+
+<td>
+16
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+57
+</th>
+
+<td>
+141290
+</td>
+
+<td>
+Apple Airpods Headphones
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+150.00
+</td>
+
+<td>
+2019-01-02 08:25:00
+</td>
+
+<td>
+4 1st St, Los Angeles, CA 90001
+</td>
+
+<td>
+January
+</td>
+
+<td>
+150.00
+</td>
+
+<td>
+Los Angeles
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+58
+</th>
+
+<td>
+141290
+</td>
+
+<td>
+AA Batteries (4-pack)
+</td>
+
+<td>
+3.0
+</td>
+
+<td>
+3.84
+</td>
+
+<td>
+2019-01-02 08:25:00
+</td>
+
+<td>
+4 1st St, Los Angeles, CA 90001
+</td>
+
+<td>
+January
+</td>
+
+<td>
+11.52
+</td>
+
+<td>
+Los Angeles
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+133
+</th>
+
+<td>
+141365
+</td>
+
+<td>
+Vareebadd Phone
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+400.00
+</td>
+
+<td>
+2019-01-10 11:19:00
+</td>
+
+<td>
+20 Dogwood St, New York City, NY 10001
+</td>
+
+<td>
+January
+</td>
+
+<td>
+400.00
+</td>
+
+<td>
+New York City
+</td>
+
+<td>
+11
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <ul>
 <li>Now, we’ll join the produts which has the same order ID (grouped) and we’ll create a new column. After that, we’ll remove the duplicates</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>products[<span class="st">&quot;Grouped&quot;</span>]<span class="op">=</span>products.groupby(<span class="st">&quot;Order ID&quot;</span>)[<span class="st">&quot;Product&quot;</span>].transform(<span class="kw">lambda</span> x:<span class="st">&#39;, &#39;</span>.join(x))</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>products<span class="op">=</span>products[[<span class="st">&quot;Order ID&quot;</span>, <span class="st">&quot;Grouped&quot;</span>]].drop_duplicates()</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>products[<span class="st">&quot;Grouped&quot;</span>]<span class="op">=</span>products.groupby(<span class="st">&quot;Order ID&quot;</span>)[<span class="st">&quot;Product&quot;</span>].transform(<span class="kw">lambda</span> x:<span class="st">&#39;, &#39;</span>.join(x))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>products<span class="op">=</span>products[[<span class="st">&quot;Order ID&quot;</span>, <span class="st">&quot;Grouped&quot;</span>]].drop_duplicates()</span></code></pre></div>
 </div>
 <ul>
 <li>Here we’ll iterate the column Grouped to combine the values that has the same info in their row</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>count<span class="op">=</span>Counter()</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> products[<span class="st">&quot;Grouped&quot;</span>]:</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    row_list<span class="op">=</span>row.split(<span class="st">&#39;,&#39;</span>)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    count.update(Counter(combinations(row_list,<span class="dv">2</span>)))</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key,value <span class="kw">in</span> count.most_common(<span class="dv">1</span>):</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Produts that are more often sold together are:&quot;</span>, key)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>count<span class="op">=</span>Counter()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> products[<span class="st">&quot;Grouped&quot;</span>]:</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    row_list<span class="op">=</span>row.split(<span class="st">&#39;,&#39;</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    count.update(Counter(combinations(row_list,<span class="dv">2</span>)))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key,value <span class="kw">in</span> count.most_common(<span class="dv">1</span>):</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Produts that are more often sold together are:&quot;</span>, key)</span></code></pre></div>
 <pre><code>Produts that are more often sold together are: (&#39;iPhone&#39;, &#39; Lightning Charging Cable&#39;)</code></pre>
 </div>
 <h2 id="question-5-what-product-sold-the-most-why-do-you-think-it-sold-the-most">Question 5: What product sold the most? Why do you think it sold the most?</h2>
@@ -2785,11 +4390,11 @@ memory usage: 10.0+ MB</code></pre>
 <li>To find this answer we need to create a new variable and assign the product column grouped</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sold_most1<span class="op">=</span>df.groupby(<span class="st">&quot;Product&quot;</span>)[<span class="st">&quot;Quantity Ordered&quot;</span>].<span class="bu">sum</span>()</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sold_most<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>sold_most1) <span class="co"># Creating a dataframe </span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>sold_most.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>sold_most<span class="op">=</span>sold_most.sort_values(by<span class="op">=</span><span class="st">&#39;Quantity Ordered&#39;</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>sold_most.iloc[<span class="dv">0</span>] <span class="co"># Answer</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sold_most1<span class="op">=</span>df.groupby(<span class="st">&quot;Product&quot;</span>)[<span class="st">&quot;Quantity Ordered&quot;</span>].<span class="bu">sum</span>()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sold_most<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>sold_most1) <span class="co"># Creating a dataframe </span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>sold_most.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>sold_most<span class="op">=</span>sold_most.sort_values(by<span class="op">=</span><span class="st">&#39;Quantity Ordered&#39;</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>sold_most.iloc[<span class="dv">0</span>] <span class="co"># Answer</span></span></code></pre></div>
 <pre><code>Product             AAA Batteries (4-pack)
 Quantity Ordered                   31017.0
 Name: 5, dtype: object</code></pre>
@@ -2798,18 +4403,18 @@ Name: 5, dtype: object</code></pre>
 <li>Plotting in sns</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Quantity Ordered&quot;</span>,y<span class="op">=</span><span class="st">&quot;Product&quot;</span>,data<span class="op">=</span>sold_most,palette<span class="op">=</span><span class="st">&#39;rocket&#39;</span>)<span class="op">;</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-30-7.png" width="576" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Quantity Ordered&quot;</span>,y<span class="op">=</span><span class="st">&quot;Product&quot;</span>,data<span class="op">=</span>sold_most,palette<span class="op">=</span><span class="st">&#39;rocket&#39;</span>)<span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-31-7.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <ul>
 <li>Plotting in plt</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.bar(sold_most[<span class="st">&quot;Product&quot;</span>],sold_most[<span class="st">&quot;Quantity Ordered&quot;</span>])<span class="op">;</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(sold_most[<span class="st">&quot;Product&quot;</span>],rotation<span class="op">=</span><span class="st">&#39;vertical&#39;</span>)<span class="op">;</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-31-9.png" width="576" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>plt.bar(sold_most[<span class="st">&quot;Product&quot;</span>],sold_most[<span class="st">&quot;Quantity Ordered&quot;</span>])<span class="op">;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(sold_most[<span class="st">&quot;Product&quot;</span>],rotation<span class="op">=</span><span class="st">&#39;vertical&#39;</span>)<span class="op">;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-32-9.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <ul>
 <li><p>The AAA Batteries are the most sold product. My hypothesis it is because they are very cheap product. Lets confirm or not this statement</p>
@@ -2818,10 +4423,10 @@ Name: 5, dtype: object</code></pre>
 </ul></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>cheap1<span class="op">=</span>df.groupby(<span class="st">&quot;Product&quot;</span>)[<span class="st">&quot;Price Each&quot;</span>].mean()</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>cheap<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>cheap1)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>cheap.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>cheap</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cheap1<span class="op">=</span>df.groupby(<span class="st">&quot;Product&quot;</span>)[<span class="st">&quot;Price Each&quot;</span>].mean()</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>cheap<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>cheap1)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>cheap.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>cheap</span></code></pre></div>
 <pre><code>                       Product  Price Each
 0                 20in Monitor      109.99
 1       27in 4K Gaming Monitor      389.99
@@ -2847,20 +4452,29 @@ Name: 5, dtype: object</code></pre>
 <li>Now, we’ll merge those both dataframe to create a visualization plot with both y axes</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>merg<span class="op">=</span>pd.merge(sold_most,cheap,how<span class="op">=</span><span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>merg<span class="op">=</span>pd.merge(sold_most,cheap,how<span class="op">=</span><span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li>Plotting</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Product&quot;</span>,y<span class="op">=</span><span class="st">&quot;Quantity Ordered&quot;</span>,data<span class="op">=</span>merg)<span class="op">;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.twinx()<span class="op">;</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="st">&quot;Product&quot;</span>,y<span class="op">=</span><span class="st">&quot;Price Each&quot;</span>,data<span class="op">=</span>merg, color<span class="op">=</span><span class="st">&quot;b&quot;</span>, ax<span class="op">=</span>ax2)<span class="op">;</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-34-11.png" width="576" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">&quot;Product&quot;</span>,y<span class="op">=</span><span class="st">&quot;Quantity Ordered&quot;</span>,data<span class="op">=</span>merg)<span class="op">;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.twinx()<span class="op">;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="st">&quot;Product&quot;</span>,y<span class="op">=</span><span class="st">&quot;Price Each&quot;</span>,data<span class="op">=</span>merg, color<span class="op">=</span><span class="st">&quot;b&quot;</span>, ax<span class="op">=</span>ax2)<span class="op">;</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="sales_analysis_files/figure-html5/unnamed-chunk-35-11.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="conclusions">Conclusions</h1>
+<p>On this analysis we can conclude:</p>
+<ul>
+<li><p>The best month of sales in December, most likely because of the holidays on the end of the year;</p></li>
+<li><p>The city which had the highest number of sales is San Francisco;</p></li>
+<li><p>The best time to display our marketing campaign is on 19h (7 pm);</p></li>
+<li><p>The products that are more often sold together are IPhone and Lightning Charging Cable;</p></li>
+<li><p>AAA batteries is the product that sold the most during the year, this happened because it is one of are chepaest products in store.</p></li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
