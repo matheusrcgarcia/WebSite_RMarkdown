@@ -2491,16 +2491,765 @@ PORTFOLIO
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&quot;marketing_campaign.csv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Number of datapoints:&quot;</span>, <span class="bu">len</span>(data))</span></code></pre></div>
-<pre><code>Number of datapoints: 2240</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
-<pre><code>     ID  Year_Birth   Education  ... Z_CostContact  Z_Revenue  Response
-0  5524        1957  Graduation  ...             3         11         1
-1  2174        1954  Graduation  ...             3         11         0
-2  4141        1965  Graduation  ...             3         11         0
-3  6182        1984  Graduation  ...             3         11         0
-4  5324        1981         PhD  ...             3         11         0
+<p>Number of datapoints: 2240</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_head<span class="op">=</span>data.head()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 29 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+ID
+</th>
+
+<th>
+Year_Birth
+</th>
+
+<th>
+Education
+</th>
+
+<th>
+Marital_Status
+</th>
+
+<th>
+Income
+</th>
+
+<th>
+Kidhome
+</th>
+
+<th>
+Teenhome
+</th>
+
+<th>
+Dt_Customer
+</th>
+
+<th>
+Recency
+</th>
+
+<th>
+MntWines
+</th>
+
+<th>
+MntFruits
+</th>
+
+<th>
+MntMeatProducts
+</th>
+
+<th>
+MntFishProducts
+</th>
+
+<th>
+MntSweetProducts
+</th>
+
+<th>
+MntGoldProds
+</th>
+
+<th>
+NumDealsPurchases
+</th>
+
+<th>
+NumWebPurchases
+</th>
+
+<th>
+NumCatalogPurchases
+</th>
+
+<th>
+NumStorePurchases
+</th>
+
+<th>
+NumWebVisitsMonth
+</th>
+
+<th>
+AcceptedCmp3
+</th>
+
+<th>
+AcceptedCmp4
+</th>
+
+<th>
+AcceptedCmp5
+</th>
+
+<th>
+AcceptedCmp1
+</th>
+
+<th>
+AcceptedCmp2
+</th>
+
+<th>
+Complain
+</th>
+
+<th>
+Z_CostContact
+</th>
+
+<th>
+Z_Revenue
+</th>
+
+<th>
+Response
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+5524
+</td>
+
+<td>
+1957
+</td>
+
+<td>
+Graduation
+</td>
+
+<td>
+Single
+</td>
+
+<td>
+58138.0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+04-09-2012
+</td>
+
+<td>
+58
+</td>
+
+<td>
+635
+</td>
+
+<td>
+88
+</td>
+
+<td>
+546
+</td>
+
+<td>
+172
+</td>
+
+<td>
+88
+</td>
+
+<td>
+88
+</td>
+
+<td>
+3
+</td>
+
+<td>
+8
+</td>
+
+<td>
+10
+</td>
+
+<td>
+4
+</td>
+
+<td>
+7
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+3
+</td>
+
+<td>
+11
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+2174
+</td>
+
+<td>
+1954
+</td>
+
+<td>
+Graduation
+</td>
+
+<td>
+Single
+</td>
+
+<td>
+46344.0
+</td>
+
+<td>
+1
+</td>
+
+<td>
+1
+</td>
+
+<td>
+08-03-2014
+</td>
+
+<td>
+38
+</td>
+
+<td>
+11
+</td>
+
+<td>
+1
+</td>
+
+<td>
+6
+</td>
+
+<td>
+2
+</td>
+
+<td>
+1
+</td>
+
+<td>
+6
+</td>
+
+<td>
+2
+</td>
+
+<td>
+1
+</td>
+
+<td>
+1
+</td>
+
+<td>
+2
+</td>
+
+<td>
+5
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+3
+</td>
+
+<td>
+11
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+4141
+</td>
+
+<td>
+1965
+</td>
+
+<td>
+Graduation
+</td>
+
+<td>
+Together
+</td>
+
+<td>
+71613.0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+21-08-2013
+</td>
+
+<td>
+26
+</td>
+
+<td>
+426
+</td>
+
+<td>
+49
+</td>
+
+<td>
+127
+</td>
+
+<td>
+111
+</td>
+
+<td>
+21
+</td>
+
+<td>
+42
+</td>
+
+<td>
+1
+</td>
+
+<td>
+8
+</td>
+
+<td>
+2
+</td>
+
+<td>
+10
+</td>
+
+<td>
+4
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+3
+</td>
+
+<td>
+11
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+6182
+</td>
+
+<td>
+1984
+</td>
+
+<td>
+Graduation
+</td>
+
+<td>
+Together
+</td>
+
+<td>
+26646.0
+</td>
+
+<td>
+1
+</td>
+
+<td>
+0
+</td>
+
+<td>
+10-02-2014
+</td>
+
+<td>
+26
+</td>
+
+<td>
+11
+</td>
+
+<td>
+4
+</td>
+
+<td>
+20
+</td>
+
+<td>
+10
+</td>
+
+<td>
+3
+</td>
+
+<td>
+5
+</td>
+
+<td>
+2
+</td>
+
+<td>
+2
+</td>
+
+<td>
+0
+</td>
+
+<td>
+4
+</td>
+
+<td>
+6
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+3
+</td>
+
+<td>
+11
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+5324
+</td>
+
+<td>
+1981
+</td>
+
+<td>
+PhD
+</td>
+
+<td>
+Married
+</td>
+
+<td>
+58293.0
+</td>
+
+<td>
+1
+</td>
+
+<td>
+0
+</td>
+
+<td>
+19-01-2014
+</td>
+
+<td>
+94
+</td>
+
+<td>
+173
+</td>
+
+<td>
+43
+</td>
+
+<td>
+118
+</td>
+
+<td>
+46
+</td>
+
+<td>
+27
+</td>
+
+<td>
+15
+</td>
+
+<td>
+5
+</td>
+
+<td>
+5
+</td>
+
+<td>
+3
+</td>
+
+<td>
+6
+</td>
+
+<td>
+5
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+0
+</td>
+
+<td>
+3
+</td>
+
+<td>
+11
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <h1 id="data-cleaning">Data Cleaning</h1>
 <p><strong>In this section:</strong></p>
@@ -2510,8 +3259,8 @@ PORTFOLIO
 </ul>
 <p>In order to, get a full grasp of what steps should I be taking to clean the dataset. Let us have a look at the information in data</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Information on features </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data.info()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Information on features </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data.info()</span></code></pre></div>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 2240 entries, 0 to 2239
 Data columns (total 29 columns):
@@ -2557,39 +3306,39 @@ memory usage: 507.6+ KB</code></pre>
 </ul>
 <p>First of all, for the missing values, I am simply going to drop the rows that have missing income values.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To remove the NA values</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The total number of data-points after removing the rows with missing values are:&quot;</span>, <span class="bu">len</span>(data))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To remove the NA values</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The total number of data-points after removing the rows with missing values are:&quot;</span>, <span class="bu">len</span>(data))</span></code></pre></div>
 <pre><code>The total number of data-points after removing the rows with missing values are: 2216</code></pre>
 </div>
 <p>In the next step, I am going to create a feature out of <strong>“Dt_Customer”</strong> that indicates the number of days a customer is registered in the firm’s database. However, in order to keep it simple, I am taking this value relative to the most recent customer in the record.</p>
 <p>Thus to get the values I must check the newest and oldest recorded dates.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Dt_Customer&quot;</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">&quot;Dt_Customer&quot;</span>])</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> []</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> data[<span class="st">&quot;Dt_Customer&quot;</span>]:</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i.date()</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    dates.append(i)  </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Dates of the newest and oldest recorded customer</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The newest customer&#39;s enrolment date in therecords:&quot;</span>,<span class="bu">max</span>(dates))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Dt_Customer&quot;</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">&quot;Dt_Customer&quot;</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> []</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> data[<span class="st">&quot;Dt_Customer&quot;</span>]:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i.date()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    dates.append(i)  </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Dates of the newest and oldest recorded customer</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The newest customer&#39;s enrolment date in therecords:&quot;</span>,<span class="bu">max</span>(dates))</span></code></pre></div>
 <pre><code>The newest customer&#39;s enrolment date in therecords: 2014-12-06</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The oldest customer&#39;s enrolment date in the records:&quot;</span>,<span class="bu">min</span>(dates))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The oldest customer&#39;s enrolment date in the records:&quot;</span>,<span class="bu">min</span>(dates))</span></code></pre></div>
 <pre><code>The oldest customer&#39;s enrolment date in the records: 2012-01-08</code></pre>
 </div>
 <p>Creating a feature <strong>(“Customer_For”)</strong> of the number of days the customers started to shop in the store relative to the last recorded date</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Created a feature &quot;Customer_For&quot;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> []</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> <span class="bu">max</span>(dates) <span class="co">#taking it to be the newest customer</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> dates:</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> d1 <span class="op">-</span> i</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    days.append(delta)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Customer_For&quot;</span>] <span class="op">=</span> days</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Customer_For&quot;</span>] <span class="op">=</span> pd.to_numeric(data[<span class="st">&quot;Customer_For&quot;</span>], errors<span class="op">=</span><span class="st">&quot;coerce&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Created a feature &quot;Customer_For&quot;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> []</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> <span class="bu">max</span>(dates) <span class="co">#taking it to be the newest customer</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> dates:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> d1 <span class="op">-</span> i</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    days.append(delta)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Customer_For&quot;</span>] <span class="op">=</span> days</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Customer_For&quot;</span>] <span class="op">=</span> pd.to_numeric(data[<span class="st">&quot;Customer_For&quot;</span>], errors<span class="op">=</span><span class="st">&quot;coerce&quot;</span>)</span></code></pre></div>
 </div>
 <p>Now we will be exploring the unique values in the categorical features to get a clear idea of the data.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Total categories in the feature Marital_Status:</span><span class="ch">\n</span><span class="st">&quot;</span>, data[<span class="st">&quot;Marital_Status&quot;</span>].value_counts(), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Total categories in the feature Marital_Status:</span><span class="ch">\n</span><span class="st">&quot;</span>, data[<span class="st">&quot;Marital_Status&quot;</span>].value_counts(), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>Total categories in the feature Marital_Status:
  Married     857
 Together    573
@@ -2600,7 +3349,7 @@ Alone         3
 Absurd        2
 YOLO          2
 Name: Marital_Status, dtype: int64 </code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Total categories in the feature Education:</span><span class="ch">\n</span><span class="st">&quot;</span>, data[<span class="st">&quot;Education&quot;</span>].value_counts())</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Total categories in the feature Education:</span><span class="ch">\n</span><span class="st">&quot;</span>, data[<span class="st">&quot;Education&quot;</span>].value_counts())</span></code></pre></div>
 <pre><code>Total categories in the feature Education:
  Graduation    1116
 PhD            481
@@ -2621,85 +3370,1163 @@ Name: Education, dtype: int64</code></pre>
 <li>Dropping some of the redundant features</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature Engineering</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Age of customer today </span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Age&quot;</span>] <span class="op">=</span> <span class="dv">2021</span><span class="op">-</span>data[<span class="st">&quot;Year_Birth&quot;</span>]</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Total spendings on various items</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Spent&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;MntWines&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntFruits&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntMeatProducts&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntFishProducts&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntSweetProducts&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntGoldProds&quot;</span>]</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Deriving living situation by marital status&quot;Alone&quot;</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Living_With&quot;</span>]<span class="op">=</span>data[<span class="st">&quot;Marital_Status&quot;</span>].replace({<span class="st">&quot;Married&quot;</span>:<span class="st">&quot;Partner&quot;</span>, <span class="st">&quot;Together&quot;</span>:<span class="st">&quot;Partner&quot;</span>, <span class="st">&quot;Absurd&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Widow&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;YOLO&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Divorced&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Single&quot;</span>:<span class="st">&quot;Alone&quot;</span>,})</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature indicating total children living in the household</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Children&quot;</span>]<span class="op">=</span>data[<span class="st">&quot;Kidhome&quot;</span>]<span class="op">+</span>data[<span class="st">&quot;Teenhome&quot;</span>]</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature for total members in the householde</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Family_Size&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;Living_With&quot;</span>].replace({<span class="st">&quot;Alone&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;Partner&quot;</span>:<span class="dv">2</span>})<span class="op">+</span> data[<span class="st">&quot;Children&quot;</span>]</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature pertaining parenthood</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Is_Parent&quot;</span>] <span class="op">=</span> np.where(data.Children<span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Segmenting education levels in three groups</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Education&quot;</span>]<span class="op">=</span>data[<span class="st">&quot;Education&quot;</span>].replace({<span class="st">&quot;Basic&quot;</span>:<span class="st">&quot;Undergraduate&quot;</span>,<span class="st">&quot;2n Cycle&quot;</span>:<span class="st">&quot;Undergraduate&quot;</span>, <span class="st">&quot;Graduation&quot;</span>:<span class="st">&quot;Graduate&quot;</span>, <span class="st">&quot;Master&quot;</span>:<span class="st">&quot;Postgraduate&quot;</span>, <span class="st">&quot;PhD&quot;</span>:<span class="st">&quot;Postgraduate&quot;</span>})</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#For clarity</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>data.rename(columns<span class="op">=</span>{<span class="st">&quot;MntWines&quot;</span>: <span class="st">&quot;Wines&quot;</span>,<span class="st">&quot;MntFruits&quot;</span>:<span class="st">&quot;Fruits&quot;</span>,<span class="st">&quot;MntMeatProducts&quot;</span>:<span class="st">&quot;Meat&quot;</span>,<span class="st">&quot;MntFishProducts&quot;</span>:<span class="st">&quot;Fish&quot;</span>,<span class="st">&quot;MntSweetProducts&quot;</span>:<span class="st">&quot;Sweets&quot;</span>,<span class="st">&quot;MntGoldProds&quot;</span>:<span class="st">&quot;Gold&quot;</span>})</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping some of the redundant features</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>to_drop <span class="op">=</span> [<span class="st">&quot;Marital_Status&quot;</span>, <span class="st">&quot;Dt_Customer&quot;</span>, <span class="st">&quot;Z_CostContact&quot;</span>, <span class="st">&quot;Z_Revenue&quot;</span>, <span class="st">&quot;Year_Birth&quot;</span>, <span class="st">&quot;ID&quot;</span>]</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(to_drop, axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature Engineering</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Age of customer today </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Age&quot;</span>] <span class="op">=</span> <span class="dv">2021</span><span class="op">-</span>data[<span class="st">&quot;Year_Birth&quot;</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Total spendings on various items</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Spent&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;MntWines&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntFruits&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntMeatProducts&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntFishProducts&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntSweetProducts&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;MntGoldProds&quot;</span>]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Deriving living situation by marital status&quot;Alone&quot;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Living_With&quot;</span>]<span class="op">=</span>data[<span class="st">&quot;Marital_Status&quot;</span>].replace({<span class="st">&quot;Married&quot;</span>:<span class="st">&quot;Partner&quot;</span>, <span class="st">&quot;Together&quot;</span>:<span class="st">&quot;Partner&quot;</span>, <span class="st">&quot;Absurd&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Widow&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;YOLO&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Divorced&quot;</span>:<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Single&quot;</span>:<span class="st">&quot;Alone&quot;</span>,})</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature indicating total children living in the household</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Children&quot;</span>]<span class="op">=</span>data[<span class="st">&quot;Kidhome&quot;</span>]<span class="op">+</span>data[<span class="st">&quot;Teenhome&quot;</span>]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature for total members in the householde</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Family_Size&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;Living_With&quot;</span>].replace({<span class="st">&quot;Alone&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;Partner&quot;</span>:<span class="dv">2</span>})<span class="op">+</span> data[<span class="st">&quot;Children&quot;</span>]</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Feature pertaining parenthood</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Is_Parent&quot;</span>] <span class="op">=</span> np.where(data.Children<span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Segmenting education levels in three groups</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Education&quot;</span>]<span class="op">=</span>data[<span class="st">&quot;Education&quot;</span>].replace({<span class="st">&quot;Basic&quot;</span>:<span class="st">&quot;Undergraduate&quot;</span>,<span class="st">&quot;2n Cycle&quot;</span>:<span class="st">&quot;Undergraduate&quot;</span>, <span class="st">&quot;Graduation&quot;</span>:<span class="st">&quot;Graduate&quot;</span>, <span class="st">&quot;Master&quot;</span>:<span class="st">&quot;Postgraduate&quot;</span>, <span class="st">&quot;PhD&quot;</span>:<span class="st">&quot;Postgraduate&quot;</span>})</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#For clarity</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>data.rename(columns<span class="op">=</span>{<span class="st">&quot;MntWines&quot;</span>: <span class="st">&quot;Wines&quot;</span>,<span class="st">&quot;MntFruits&quot;</span>:<span class="st">&quot;Fruits&quot;</span>,<span class="st">&quot;MntMeatProducts&quot;</span>:<span class="st">&quot;Meat&quot;</span>,<span class="st">&quot;MntFishProducts&quot;</span>:<span class="st">&quot;Fish&quot;</span>,<span class="st">&quot;MntSweetProducts&quot;</span>:<span class="st">&quot;Sweets&quot;</span>,<span class="st">&quot;MntGoldProds&quot;</span>:<span class="st">&quot;Gold&quot;</span>})</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping some of the redundant features</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>to_drop <span class="op">=</span> [<span class="st">&quot;Marital_Status&quot;</span>, <span class="st">&quot;Dt_Customer&quot;</span>, <span class="st">&quot;Z_CostContact&quot;</span>, <span class="st">&quot;Z_Revenue&quot;</span>, <span class="st">&quot;Year_Birth&quot;</span>, <span class="st">&quot;ID&quot;</span>]</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(to_drop, axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <p>Now that we have some new features let’s have a look at the data’s stats.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div>
-<pre><code>              Income      Kidhome  ...  Family_Size    Is_Parent
-count    2216.000000  2216.000000  ...  2216.000000  2216.000000
-mean    52247.251354     0.441787  ...     2.592509     0.714350
-std     25173.076661     0.536896  ...     0.905722     0.451825
-min      1730.000000     0.000000  ...     1.000000     0.000000
-25%     35303.000000     0.000000  ...     2.000000     0.000000
-50%     51381.500000     0.000000  ...     3.000000     1.000000
-75%     68522.000000     1.000000  ...     3.000000     1.000000
-max    666666.000000     2.000000  ...     5.000000     1.000000
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_desc<span class="op">=</span>data.describe()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_desc.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[8 rows x 28 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Income
+</th>
+
+<th>
+Kidhome
+</th>
+
+<th>
+Teenhome
+</th>
+
+<th>
+Recency
+</th>
+
+<th>
+Wines
+</th>
+
+<th>
+Fruits
+</th>
+
+<th>
+Meat
+</th>
+
+<th>
+Fish
+</th>
+
+<th>
+Sweets
+</th>
+
+<th>
+Gold
+</th>
+
+<th>
+NumDealsPurchases
+</th>
+
+<th>
+NumWebPurchases
+</th>
+
+<th>
+NumCatalogPurchases
+</th>
+
+<th>
+NumStorePurchases
+</th>
+
+<th>
+NumWebVisitsMonth
+</th>
+
+<th>
+AcceptedCmp3
+</th>
+
+<th>
+AcceptedCmp4
+</th>
+
+<th>
+AcceptedCmp5
+</th>
+
+<th>
+AcceptedCmp1
+</th>
+
+<th>
+AcceptedCmp2
+</th>
+
+<th>
+Complain
+</th>
+
+<th>
+Response
+</th>
+
+<th>
+Customer_For
+</th>
+
+<th>
+Age
+</th>
+
+<th>
+Spent
+</th>
+
+<th>
+Children
+</th>
+
+<th>
+Family_Size
+</th>
+
+<th>
+Is_Parent
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+count
+</th>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2.216000e+03
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+<td>
+2216.000000
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+mean
+</th>
+
+<td>
+52247.251354
+</td>
+
+<td>
+0.441787
+</td>
+
+<td>
+0.505415
+</td>
+
+<td>
+49.012635
+</td>
+
+<td>
+305.091606
+</td>
+
+<td>
+26.356047
+</td>
+
+<td>
+166.995939
+</td>
+
+<td>
+37.637635
+</td>
+
+<td>
+27.028881
+</td>
+
+<td>
+43.965253
+</td>
+
+<td>
+2.323556
+</td>
+
+<td>
+4.085289
+</td>
+
+<td>
+2.671029
+</td>
+
+<td>
+5.800993
+</td>
+
+<td>
+5.319043
+</td>
+
+<td>
+0.073556
+</td>
+
+<td>
+0.074007
+</td>
+
+<td>
+0.073105
+</td>
+
+<td>
+0.064079
+</td>
+
+<td>
+0.013538
+</td>
+
+<td>
+0.009477
+</td>
+
+<td>
+0.150271
+</td>
+
+<td>
+4.423735e+16
+</td>
+
+<td>
+52.179603
+</td>
+
+<td>
+607.075361
+</td>
+
+<td>
+0.947202
+</td>
+
+<td>
+2.592509
+</td>
+
+<td>
+0.714350
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+std
+</th>
+
+<td>
+25173.076661
+</td>
+
+<td>
+0.536896
+</td>
+
+<td>
+0.544181
+</td>
+
+<td>
+28.948352
+</td>
+
+<td>
+337.327920
+</td>
+
+<td>
+39.793917
+</td>
+
+<td>
+224.283273
+</td>
+
+<td>
+54.752082
+</td>
+
+<td>
+41.072046
+</td>
+
+<td>
+51.815414
+</td>
+
+<td>
+1.923716
+</td>
+
+<td>
+2.740951
+</td>
+
+<td>
+2.926734
+</td>
+
+<td>
+3.250785
+</td>
+
+<td>
+2.425359
+</td>
+
+<td>
+0.261106
+</td>
+
+<td>
+0.261842
+</td>
+
+<td>
+0.260367
+</td>
+
+<td>
+0.244950
+</td>
+
+<td>
+0.115588
+</td>
+
+<td>
+0.096907
+</td>
+
+<td>
+0.357417
+</td>
+
+<td>
+2.008532e+16
+</td>
+
+<td>
+11.985554
+</td>
+
+<td>
+602.900476
+</td>
+
+<td>
+0.749062
+</td>
+
+<td>
+0.905722
+</td>
+
+<td>
+0.451825
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+min
+</th>
+
+<td>
+1730.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000e+00
+</td>
+
+<td>
+25.000000
+</td>
+
+<td>
+5.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+25%
+</th>
+
+<td>
+35303.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+24.000000
+</td>
+
+<td>
+24.000000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+16.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+9.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+2.937600e+16
+</td>
+
+<td>
+44.000000
+</td>
+
+<td>
+69.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+50%
+</th>
+
+<td>
+51381.500000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+49.000000
+</td>
+
+<td>
+174.500000
+</td>
+
+<td>
+8.000000
+</td>
+
+<td>
+68.000000
+</td>
+
+<td>
+12.000000
+</td>
+
+<td>
+8.000000
+</td>
+
+<td>
+24.500000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+4.000000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+5.000000
+</td>
+
+<td>
+6.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+4.432320e+16
+</td>
+
+<td>
+51.000000
+</td>
+
+<td>
+396.500000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+75%
+</th>
+
+<td>
+68522.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+74.000000
+</td>
+
+<td>
+505.000000
+</td>
+
+<td>
+33.000000
+</td>
+
+<td>
+232.250000
+</td>
+
+<td>
+50.000000
+</td>
+
+<td>
+33.000000
+</td>
+
+<td>
+56.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+6.000000
+</td>
+
+<td>
+4.000000
+</td>
+
+<td>
+8.000000
+</td>
+
+<td>
+7.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+0.000000
+</td>
+
+<td>
+5.927040e+16
+</td>
+
+<td>
+62.000000
+</td>
+
+<td>
+1048.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+max
+</th>
+
+<td>
+666666.000000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+2.000000
+</td>
+
+<td>
+99.000000
+</td>
+
+<td>
+1493.000000
+</td>
+
+<td>
+199.000000
+</td>
+
+<td>
+1725.000000
+</td>
+
+<td>
+259.000000
+</td>
+
+<td>
+262.000000
+</td>
+
+<td>
+321.000000
+</td>
+
+<td>
+15.000000
+</td>
+
+<td>
+27.000000
+</td>
+
+<td>
+28.000000
+</td>
+
+<td>
+13.000000
+</td>
+
+<td>
+20.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+<td>
+9.184320e+16
+</td>
+
+<td>
+128.000000
+</td>
+
+<td>
+2525.000000
+</td>
+
+<td>
+3.000000
+</td>
+
+<td>
+5.000000
+</td>
+
+<td>
+1.000000
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <p>The above stats show some discrepancies in mean Income and Age and max Income and age.</p>
 <p>Do note that max-age is 128 years, As I calculated the age that would be today (i.e. 2021) and the data is old.</p>
 <p>I must take a look at the broader view of the data. I will plot some of the selected features.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To plot some selected features </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting up colors prefrences</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">&quot;axes.facecolor&quot;</span>:<span class="st">&quot;#FFF9ED&quot;</span>,<span class="st">&quot;figure.facecolor&quot;</span>:<span class="st">&quot;#FFF9ED&quot;</span>})</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>pallet <span class="op">=</span> [<span class="st">&quot;#682F2F&quot;</span>, <span class="st">&quot;#9E726F&quot;</span>, <span class="st">&quot;#D6B2B1&quot;</span>, <span class="st">&quot;#B9C0C9&quot;</span>, <span class="st">&quot;#9F8A78&quot;</span>, <span class="st">&quot;#F3AB60&quot;</span>]</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> colors.ListedColormap([<span class="st">&quot;#682F2F&quot;</span>, <span class="st">&quot;#9E726F&quot;</span>, <span class="st">&quot;#D6B2B1&quot;</span>, <span class="st">&quot;#B9C0C9&quot;</span>, <span class="st">&quot;#9F8A78&quot;</span>, <span class="st">&quot;#F3AB60&quot;</span>])</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting following features</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>To_Plot <span class="op">=</span> [ <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Recency&quot;</span>, <span class="st">&quot;Customer_For&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Spent&quot;</span>, <span class="st">&quot;Is_Parent&quot;</span>]</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Reletive Plot Of Some Selected Features: A Data Subset&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To plot some selected features </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting following features</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>To_Plot <span class="op">=</span> [ <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Recency&quot;</span>, <span class="st">&quot;Customer_For&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Spent&quot;</span>, <span class="st">&quot;Is_Parent&quot;</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Reletive Plot Of Some Selected Features: A Data Subset&quot;</span>)</span></code></pre></div>
 <pre><code>Reletive Plot Of Some Selected Features: A Data Subset</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data[To_Plot], hue<span class="op">=</span> <span class="st">&quot;Is_Parent&quot;</span>,palette<span class="op">=</span> ([<span class="st">&quot;#682F2F&quot;</span>,<span class="st">&quot;#F3AB60&quot;</span>]))</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Taking hue </span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data[To_Plot], hue<span class="op">=</span> <span class="st">&quot;Is_Parent&quot;</span>,palette<span class="op">=</span> ([<span class="st">&quot;#682F2F&quot;</span>,<span class="st">&quot;#F3AB60&quot;</span>]))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Taking hue </span></span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-10-1.png" width="662" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="cluster_seg_files/figure-html5/unnamed-chunk-10-2.png" width="1280" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="cluster_seg_files/figure-html5/unnamed-chunk-10-2.png" width="1279" /></p>
 </div>
 <p>Clearly, there are a few outliers in the Income and Age features. I will be deleting the outliers in the data.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping the outliers by setting a cap on Age and income. </span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[(data[<span class="st">&quot;Age&quot;</span>]<span class="op">&lt;</span><span class="dv">90</span>)]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[(data[<span class="st">&quot;Income&quot;</span>]<span class="op">&lt;</span><span class="dv">600000</span>)]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The total number of data-points after removing the outliers are:&quot;</span>, <span class="bu">len</span>(data))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping the outliers by setting a cap on Age and income. </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[(data[<span class="st">&quot;Age&quot;</span>]<span class="op">&lt;</span><span class="dv">90</span>)]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[(data[<span class="st">&quot;Income&quot;</span>]<span class="op">&lt;</span><span class="dv">600000</span>)]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;The total number of data-points after removing the outliers are:&quot;</span>, <span class="bu">len</span>(data))</span></code></pre></div>
 <pre><code>The total number of data-points after removing the outliers are: 2212</code></pre>
 </div>
 <p>Next, let us look at the correlation amongst the features. (Excluding the categorical attributes at this point)</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#correlation matrix</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>corrmat<span class="op">=</span> data.corr()</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corrmat,annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span>cmap, center<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="cluster_seg_files/figure-html5/unnamed-chunk-12-5.png" width="1280" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#correlation matrix</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>corrmat<span class="op">=</span> data.corr()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corrmat,annot<span class="op">=</span><span class="va">True</span>, center<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="cluster_seg_files/figure-html5/unnamed-chunk-12-5.png" width="1279" /></p>
 </div>
 <p>The data is quite clean and the new features have been included. I will proceed to the next step. That is, preprocessing the data.</p>
 <h1 id="data-preprocessing">Data Preprocessing</h1>
@@ -2711,49 +4538,654 @@ max    666666.000000     2.000000  ...     5.000000     1.000000
 <li>Creating a subset dataframe for dimensionality reduction</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get list of categorical variables</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> (data.dtypes <span class="op">==</span> <span class="st">&#39;object&#39;</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>object_cols <span class="op">=</span> <span class="bu">list</span>(s[s].index)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Categorical variables in the dataset:&quot;</span>, object_cols)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get list of categorical variables</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> (data.dtypes <span class="op">==</span> <span class="st">&#39;object&#39;</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>object_cols <span class="op">=</span> <span class="bu">list</span>(s[s].index)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Categorical variables in the dataset:&quot;</span>, object_cols)</span></code></pre></div>
 <pre><code>Categorical variables in the dataset: [&#39;Education&#39;, &#39;Living_With&#39;]</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Label Encoding the object dtypes.</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>LE<span class="op">=</span>LabelEncoder()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> object_cols:</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    data[i]<span class="op">=</span>data[[i]].<span class="bu">apply</span>(LE.fit_transform)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;All features are now numerical&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Label Encoding the object dtypes.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>LE<span class="op">=</span>LabelEncoder()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> object_cols:</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    data[i]<span class="op">=</span>data[[i]].<span class="bu">apply</span>(LE.fit_transform)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;All features are now numerical&quot;</span>)</span></code></pre></div>
 <pre><code>All features are now numerical</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of data</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> data.copy()</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a subset of dataframe by dropping the features on deals accepted and promotions</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>cols_del <span class="op">=</span> [<span class="st">&#39;AcceptedCmp3&#39;</span>, <span class="st">&#39;AcceptedCmp4&#39;</span>, <span class="st">&#39;AcceptedCmp5&#39;</span>, <span class="st">&#39;AcceptedCmp1&#39;</span>,<span class="st">&#39;AcceptedCmp2&#39;</span>, <span class="st">&#39;Complain&#39;</span>, <span class="st">&#39;Response&#39;</span>]</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.drop(cols_del, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>scaler.fit(ds)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of data</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> data.copy()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a subset of dataframe by dropping the features on deals accepted and promotions</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>cols_del <span class="op">=</span> [<span class="st">&#39;AcceptedCmp3&#39;</span>, <span class="st">&#39;AcceptedCmp4&#39;</span>, <span class="st">&#39;AcceptedCmp5&#39;</span>, <span class="st">&#39;AcceptedCmp1&#39;</span>,<span class="st">&#39;AcceptedCmp2&#39;</span>, <span class="st">&#39;Complain&#39;</span>, <span class="st">&#39;Response&#39;</span>]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.drop(cols_del, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>scaler.fit(ds)</span></code></pre></div>
 <pre><code>StandardScaler()</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scaled_ds <span class="op">=</span> pd.DataFrame(scaler.transform(ds),columns<span class="op">=</span> ds.columns )</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;All features are now scaled&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>scaled_ds <span class="op">=</span> pd.DataFrame(scaler.transform(ds),columns<span class="op">=</span> ds.columns )</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;All features are now scaled&quot;</span>)</span></code></pre></div>
 <pre><code>All features are now scaled</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaled data to be used for reducing the dimensionality</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Dataframe to be used for further modelling:&quot;</span>)</span></code></pre></div>
-<pre><code>Dataframe to be used for further modelling:</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>scaled_ds.head()</span></code></pre></div>
-<pre><code>   Education    Income   Kidhome  ...  Children  Family_Size  Is_Parent
-0  -0.893586  0.287105 -0.822754  ... -1.264598    -1.758359  -1.581139
-1  -0.893586 -0.260882  1.040021  ...  1.404572     0.449070   0.632456
-2  -0.893586  0.913196 -0.822754  ... -1.264598    -0.654644  -1.581139
-3  -0.893586 -1.176114  1.040021  ...  0.069987     0.449070   0.632456
-4   0.571657  0.294307  1.040021  ...  0.069987     0.449070   0.632456
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaled data to be used for reducing the dimensionality</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Dataframe to be used for further modelling:&quot;</span>)</span></code></pre></div>
+<p>Dataframe to be used for further modelling:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scaled_head<span class="op">=</span>scaled_ds.head()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>scaled_head.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[5 rows x 23 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+Education
+</th>
+
+<th>
+Income
+</th>
+
+<th>
+Kidhome
+</th>
+
+<th>
+Teenhome
+</th>
+
+<th>
+Recency
+</th>
+
+<th>
+Wines
+</th>
+
+<th>
+Fruits
+</th>
+
+<th>
+Meat
+</th>
+
+<th>
+Fish
+</th>
+
+<th>
+Sweets
+</th>
+
+<th>
+Gold
+</th>
+
+<th>
+NumDealsPurchases
+</th>
+
+<th>
+NumWebPurchases
+</th>
+
+<th>
+NumCatalogPurchases
+</th>
+
+<th>
+NumStorePurchases
+</th>
+
+<th>
+NumWebVisitsMonth
+</th>
+
+<th>
+Customer_For
+</th>
+
+<th>
+Age
+</th>
+
+<th>
+Spent
+</th>
+
+<th>
+Living_With
+</th>
+
+<th>
+Children
+</th>
+
+<th>
+Family_Size
+</th>
+
+<th>
+Is_Parent
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+0
+</th>
+
+<td>
+-0.893586
+</td>
+
+<td>
+0.287105
+</td>
+
+<td>
+-0.822754
+</td>
+
+<td>
+-0.929699
+</td>
+
+<td>
+0.310353
+</td>
+
+<td>
+0.977660
+</td>
+
+<td>
+1.552041
+</td>
+
+<td>
+1.690293
+</td>
+
+<td>
+2.453472
+</td>
+
+<td>
+1.483713
+</td>
+
+<td>
+0.852576
+</td>
+
+<td>
+0.351030
+</td>
+
+<td>
+1.426865
+</td>
+
+<td>
+2.503607
+</td>
+
+<td>
+-0.555814
+</td>
+
+<td>
+0.692181
+</td>
+
+<td>
+1.973583
+</td>
+
+<td>
+1.018352
+</td>
+
+<td>
+1.676245
+</td>
+
+<td>
+-1.349603
+</td>
+
+<td>
+-1.264598
+</td>
+
+<td>
+-1.758359
+</td>
+
+<td>
+-1.581139
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+1
+</th>
+
+<td>
+-0.893586
+</td>
+
+<td>
+-0.260882
+</td>
+
+<td>
+1.040021
+</td>
+
+<td>
+0.908097
+</td>
+
+<td>
+-0.380813
+</td>
+
+<td>
+-0.872618
+</td>
+
+<td>
+-0.637461
+</td>
+
+<td>
+-0.718230
+</td>
+
+<td>
+-0.651004
+</td>
+
+<td>
+-0.634019
+</td>
+
+<td>
+-0.733642
+</td>
+
+<td>
+-0.168701
+</td>
+
+<td>
+-1.126420
+</td>
+
+<td>
+-0.571340
+</td>
+
+<td>
+-1.171160
+</td>
+
+<td>
+-0.132545
+</td>
+
+<td>
+-1.665144
+</td>
+
+<td>
+1.274785
+</td>
+
+<td>
+-0.963297
+</td>
+
+<td>
+-1.349603
+</td>
+
+<td>
+1.404572
+</td>
+
+<td>
+0.449070
+</td>
+
+<td>
+0.632456
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+2
+</th>
+
+<td>
+-0.893586
+</td>
+
+<td>
+0.913196
+</td>
+
+<td>
+-0.822754
+</td>
+
+<td>
+-0.929699
+</td>
+
+<td>
+-0.795514
+</td>
+
+<td>
+0.357935
+</td>
+
+<td>
+0.570540
+</td>
+
+<td>
+-0.178542
+</td>
+
+<td>
+1.339513
+</td>
+
+<td>
+-0.147184
+</td>
+
+<td>
+-0.037254
+</td>
+
+<td>
+-0.688432
+</td>
+
+<td>
+1.426865
+</td>
+
+<td>
+-0.229679
+</td>
+
+<td>
+1.290224
+</td>
+
+<td>
+-0.544908
+</td>
+
+<td>
+-0.172664
+</td>
+
+<td>
+0.334530
+</td>
+
+<td>
+0.280110
+</td>
+
+<td>
+0.740959
+</td>
+
+<td>
+-1.264598
+</td>
+
+<td>
+-0.654644
+</td>
+
+<td>
+-1.581139
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+3
+</th>
+
+<td>
+-0.893586
+</td>
+
+<td>
+-1.176114
+</td>
+
+<td>
+1.040021
+</td>
+
+<td>
+-0.929699
+</td>
+
+<td>
+-0.795514
+</td>
+
+<td>
+-0.872618
+</td>
+
+<td>
+-0.561961
+</td>
+
+<td>
+-0.655787
+</td>
+
+<td>
+-0.504911
+</td>
+
+<td>
+-0.585335
+</td>
+
+<td>
+-0.752987
+</td>
+
+<td>
+-0.168701
+</td>
+
+<td>
+-0.761665
+</td>
+
+<td>
+-0.913000
+</td>
+
+<td>
+-0.555814
+</td>
+
+<td>
+0.279818
+</td>
+
+<td>
+-1.923210
+</td>
+
+<td>
+-1.289547
+</td>
+
+<td>
+-0.920135
+</td>
+
+<td>
+0.740959
+</td>
+
+<td>
+0.069987
+</td>
+
+<td>
+0.449070
+</td>
+
+<td>
+0.632456
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+4
+</th>
+
+<td>
+0.571657
+</td>
+
+<td>
+0.294307
+</td>
+
+<td>
+1.040021
+</td>
+
+<td>
+-0.929699
+</td>
+
+<td>
+1.554453
+</td>
+
+<td>
+-0.392257
+</td>
+
+<td>
+0.419540
+</td>
+
+<td>
+-0.218684
+</td>
+
+<td>
+0.152508
+</td>
+
+<td>
+-0.001133
+</td>
+
+<td>
+-0.559545
+</td>
+
+<td>
+1.390492
+</td>
+
+<td>
+0.332600
+</td>
+
+<td>
+0.111982
+</td>
+
+<td>
+0.059532
+</td>
+
+<td>
+-0.132545
+</td>
+
+<td>
+-0.822130
+</td>
+
+<td>
+-1.033114
+</td>
+
+<td>
+-0.307562
+</td>
+
+<td>
+0.740959
+</td>
+
+<td>
+0.069987
+</td>
+
+<td>
+0.449070
+</td>
+
+<td>
+0.632456
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <h1 id="dimensionality-reduction">Dimensionality Reduction</h1>
 <p>In this problem, there are many factors on the basis of which the final classification will be done. These factors are basically attributes or features. The higher the number of features, the harder it is to work with it. Many of these features are correlated, and hence redundant. This is why I will be performing dimensionality reduction on the selected features before putting them through a classifier. <em>Dimensionality reduction is the process of reducing the number of random variables under consideration, by obtaining a set of principal variables.</em></p>
@@ -2766,30 +5198,197 @@ max    666666.000000     2.000000  ...     5.000000     1.000000
 <p><strong>Dimensionality reduction with PCA</strong></p>
 <p>For this project, I will be reducing the dimensions to 3.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiating PCA to reduce dimentions aka features to 3</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>pca.fit(scaled_ds)</span></code></pre></div>
-<pre><code>PCA(n_components=3)</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>PCA_ds <span class="op">=</span> pd.DataFrame(pca.transform(scaled_ds), columns<span class="op">=</span>([<span class="st">&quot;col1&quot;</span>,<span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>]))</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>PCA_ds.describe().T</span></code></pre></div>
-<pre><code>       count          mean       std  ...       50%       75%       max
-col1  2212.0 -1.284887e-17  2.878377  ... -0.780421  2.383290  7.444305
-col2  2212.0  3.212219e-17  1.706839  ... -0.158123  1.242289  6.142721
-col3  2212.0  7.307797e-17  1.221956  ... -0.022692  0.799895  6.611222
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiating PCA to reduce dimentions aka features to 3</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>pca.fit(scaled_ds)</span></code></pre></div>
+<p>PCA(n_components=3)</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>PCA_ds <span class="op">=</span> pd.DataFrame(pca.transform(scaled_ds), columns<span class="op">=</span>([<span class="st">&quot;col1&quot;</span>,<span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>]))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pca_t<span class="op">=</span>PCA_ds.describe().T</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>pca_t.to_html()</span></code></pre></div>
+’
+<table border="1" class="dataframe">
 
-[3 rows x 8 columns]</code></pre>
+<thead>
+
+<tr style="text-align: right;">
+
+<th>
+</th>
+
+<th>
+count
+</th>
+
+<th>
+mean
+</th>
+
+<th>
+std
+</th>
+
+<th>
+min
+</th>
+
+<th>
+25%
+</th>
+
+<th>
+50%
+</th>
+
+<th>
+75%
+</th>
+
+<th>
+max
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<th>
+col1
+</th>
+
+<td>
+2212.0
+</td>
+
+<td>
+-1.284887e-17
+</td>
+
+<td>
+2.878377
+</td>
+
+<td>
+-5.969394
+</td>
+
+<td>
+-2.538494
+</td>
+
+<td>
+-0.780421
+</td>
+
+<td>
+2.383290
+</td>
+
+<td>
+7.444305
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+col2
+</th>
+
+<td>
+2212.0
+</td>
+
+<td>
+3.212219e-17
+</td>
+
+<td>
+1.706839
+</td>
+
+<td>
+-4.312196
+</td>
+
+<td>
+-1.328316
+</td>
+
+<td>
+-0.158123
+</td>
+
+<td>
+1.242289
+</td>
+
+<td>
+6.142721
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+col3
+</th>
+
+<td>
+2212.0
+</td>
+
+<td>
+7.307797e-17
+</td>
+
+<td>
+1.221956
+</td>
+
+<td>
+-3.530416
+</td>
+
+<td>
+-0.829067
+</td>
+
+<td>
+-0.022692
+</td>
+
+<td>
+0.799895
+</td>
+
+<td>
+6.611222
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p>’</p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A 3D Projection Of Data In The Reduced Dimension</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span>PCA_ds[<span class="st">&quot;col1&quot;</span>]</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span>PCA_ds[<span class="st">&quot;col2&quot;</span>]</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span>PCA_ds[<span class="st">&quot;col3&quot;</span>]</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">#To plot</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>ax.scatter(x,y,z, c<span class="op">=</span><span class="st">&quot;maroon&quot;</span>, marker<span class="op">=</span><span class="st">&quot;o&quot;</span> )</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&quot;A 3D Projection Of Data In The Reduced Dimension&quot;</span>)</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A 3D Projection Of Data In The Reduced Dimension</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span>PCA_ds[<span class="st">&quot;col1&quot;</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span>PCA_ds[<span class="st">&quot;col2&quot;</span>]</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span>PCA_ds[<span class="st">&quot;col3&quot;</span>]</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co">#To plot</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>ax.scatter(x,y,z, c<span class="op">=</span><span class="st">&quot;maroon&quot;</span>, marker<span class="op">=</span><span class="st">&quot;o&quot;</span> )</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&quot;A 3D Projection Of Data In The Reduced Dimension&quot;</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-17-7.png" width="960" /></p>
 </div>
 <h1 id="clustering">Clustering</h1>
@@ -2800,22 +5399,22 @@ col3  2212.0  7.307797e-17  1.221956  ... -0.022692  0.799895  6.611222
 <li>Examining the clusters formed via scatter plot</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiating the Agglomerative Clustering model </span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>AC <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and predict clusters</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>yhat_AC <span class="op">=</span> AC.fit_predict(PCA_ds)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>PCA_ds[<span class="st">&quot;Clusters&quot;</span>] <span class="op">=</span> yhat_AC</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding the Clusters feature to the orignal dataframe.</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Clusters&quot;</span>]<span class="op">=</span> yhat_AC</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiating the Agglomerative Clustering model </span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>AC <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model and predict clusters</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>yhat_AC <span class="op">=</span> AC.fit_predict(PCA_ds)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>PCA_ds[<span class="st">&quot;Clusters&quot;</span>] <span class="op">=</span> yhat_AC</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding the Clusters feature to the orignal dataframe.</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Clusters&quot;</span>]<span class="op">=</span> yhat_AC</span></code></pre></div>
 </div>
 <p>To examine the clusters formed let’s have a look at the 3-D distribution of the clusters.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the clusters</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&#39;3d&#39;</span>, label<span class="op">=</span><span class="st">&quot;bla&quot;</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, z, s<span class="op">=</span><span class="dv">40</span>, c<span class="op">=</span>PCA_ds[<span class="st">&quot;Clusters&quot;</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, cmap <span class="op">=</span> cmap )</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&quot;The Plot Of The Clusters&quot;</span>)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the clusters</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&#39;3d&#39;</span>, label<span class="op">=</span><span class="st">&quot;bla&quot;</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, z, s<span class="op">=</span><span class="dv">40</span>, c<span class="op">=</span>PCA_ds[<span class="st">&quot;Clusters&quot;</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&quot;The Plot Of The Clusters&quot;</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-19-9.png" width="960" /></p>
 </div>
 <h1 id="evaluating-models">Evaluating Models</h1>
@@ -2823,19 +5422,19 @@ col3  2212.0  7.307797e-17  1.221956  ... -0.022692  0.799895  6.611222
 <p>For that, we will be having a look at the data in light of clusters via exploratory data analysis and drawing conclusions.</p>
 <p><strong>Firstly, let us have a look at the group distribution of clustring</strong></p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting countplot of clusters</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>pal <span class="op">=</span> [<span class="st">&quot;#682F2F&quot;</span>,<span class="st">&quot;#B9C0C9&quot;</span>, <span class="st">&quot;#9F8A78&quot;</span>,<span class="st">&quot;#F3AB60&quot;</span>]</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>pl <span class="op">=</span> sns.countplot(x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)<span class="op">;</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Distribution Of The Clusters&quot;</span>)<span class="op">;</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting countplot of clusters</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pal <span class="op">=</span> [<span class="st">&quot;#682F2F&quot;</span>,<span class="st">&quot;#B9C0C9&quot;</span>, <span class="st">&quot;#9F8A78&quot;</span>,<span class="st">&quot;#F3AB60&quot;</span>]</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>pl <span class="op">=</span> sns.countplot(x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)<span class="op">;</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Distribution Of The Clusters&quot;</span>)<span class="op">;</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-20-11.png" width="960" /></p>
 </div>
 <p>The clusters seem to be fairly distributed.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pl <span class="op">=</span> sns.scatterplot(data <span class="op">=</span> data,x<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], y<span class="op">=</span>data[<span class="st">&quot;Income&quot;</span>],hue<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Cluster&#39;s Profile Based On Income And Spending&quot;</span>)<span class="op">;</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pl <span class="op">=</span> sns.scatterplot(data <span class="op">=</span> data,x<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], y<span class="op">=</span>data[<span class="st">&quot;Income&quot;</span>],hue<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Cluster&#39;s Profile Based On Income And Spending&quot;</span>)<span class="op">;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-21-13.png" width="960" /></p>
 </div>
 <p><strong>Income vs spending plot shows the clusters pattern</strong></p>
@@ -2847,32 +5446,32 @@ col3  2212.0  7.307797e-17  1.221956  ... -0.022692  0.799895  6.611222
 </ul>
 <p>Next, I will be looking at the detailed distribution of clusters as per the various products in the data. Namely: Wines, Fruits, Meat, Fish, Sweets and Gold</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>pl<span class="op">=</span>sns.swarmplot(x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], y<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], color<span class="op">=</span> <span class="st">&quot;#CBEDDD&quot;</span>, alpha<span class="op">=</span><span class="fl">0.5</span> )</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>pl<span class="op">=</span>sns.boxenplot(x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], y<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], palette<span class="op">=</span>pal)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pl<span class="op">=</span>sns.swarmplot(x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], y<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], color<span class="op">=</span> <span class="st">&quot;#CBEDDD&quot;</span>, alpha<span class="op">=</span><span class="fl">0.5</span> )</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>pl<span class="op">=</span>sns.boxenplot(x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], y<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], palette<span class="op">=</span>pal)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-22-15.png" width="768" /></p>
 </div>
 <p>From the above plot, it can be clearly seen that cluster 1 is our biggest set of customers closely followed by cluster 0. We can explore what each cluster is spending on for the targeted marketing strategies.</p>
 <p>Let us next explore how did our campaigns do in the past.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a feature to get a sum of accepted promotions </span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Total_Promos&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;AcceptedCmp1&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp2&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp3&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp4&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp5&quot;</span>]</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting count of total campaign accepted.</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>pl <span class="op">=</span> sns.countplot(x<span class="op">=</span>data[<span class="st">&quot;Total_Promos&quot;</span>],hue<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Count Of Promotion Accepted&quot;</span>)</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>pl.set_xlabel(<span class="st">&quot;Number Of Total Accepted Promotions&quot;</span>)</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a feature to get a sum of accepted promotions </span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Total_Promos&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;AcceptedCmp1&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp2&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp3&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp4&quot;</span>]<span class="op">+</span> data[<span class="st">&quot;AcceptedCmp5&quot;</span>]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting count of total campaign accepted.</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>pl <span class="op">=</span> sns.countplot(x<span class="op">=</span>data[<span class="st">&quot;Total_Promos&quot;</span>],hue<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Count Of Promotion Accepted&quot;</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>pl.set_xlabel(<span class="st">&quot;Number Of Total Accepted Promotions&quot;</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-23-17.png" width="768" /></p>
 </div>
 <p>There has not been an overwhelming response to the campaigns so far. Very few participants overall. Moreover, no one part take in all 5 of them. Perhaps better-targeted and well-planned campaigns are required to boost sales.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the number of deals purchased</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>pl<span class="op">=</span>sns.boxenplot(y<span class="op">=</span>data[<span class="st">&quot;NumDealsPurchases&quot;</span>],x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Number of Deals Purchased&quot;</span>)</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the number of deals purchased</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>pl<span class="op">=</span>sns.boxenplot(y<span class="op">=</span>data[<span class="st">&quot;NumDealsPurchases&quot;</span>],x<span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], palette<span class="op">=</span> pal)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>pl.set_title(<span class="st">&quot;Number of Deals Purchased&quot;</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-24-19.png" width="768" /></p>
 </div>
 <p>Unlike campaigns, the deals offered did well. It has best outcome with cluster 0 and cluster 3. However, our star customers cluster 1 are not much into the deals. Nothing seems to attract cluster 2 overwhelmingly</p>
@@ -2880,30 +5479,50 @@ col3  2212.0  7.307797e-17  1.221956  ... -0.022692  0.799895  6.611222
 <p>Now that we have formed the clusters and looked at their purchasing habits. Let us see who all are there in these clusters. For that, we will be profiling the clusters formed and come to a conclusion about who is our star customer and who needs more attention from the retail store’s marketing team.</p>
 <p>To decide that I will be plotting some of the features that are indicative of the customer’s personal traits in light of the cluster they are in. On the basis of the outcomes, I will be arriving at the conclusions.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>Personal <span class="op">=</span> [ <span class="st">&quot;Kidhome&quot;</span>,<span class="st">&quot;Teenhome&quot;</span>,<span class="st">&quot;Customer_For&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Children&quot;</span>, <span class="st">&quot;Family_Size&quot;</span>, <span class="st">&quot;Is_Parent&quot;</span>, <span class="st">&quot;Education&quot;</span>,<span class="st">&quot;Living_With&quot;</span>]</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> Personal:</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    plt.figure()<span class="op">;</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    sns.jointplot(x<span class="op">=</span>data[i], y<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], hue <span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], kind<span class="op">=</span><span class="st">&quot;kde&quot;</span>, palette<span class="op">=</span>pal)<span class="op">;</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>Personal <span class="op">=</span> [ <span class="st">&quot;Kidhome&quot;</span>,<span class="st">&quot;Teenhome&quot;</span>,<span class="st">&quot;Customer_For&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Children&quot;</span>, <span class="st">&quot;Family_Size&quot;</span>, <span class="st">&quot;Is_Parent&quot;</span>, <span class="st">&quot;Education&quot;</span>,<span class="st">&quot;Living_With&quot;</span>]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> Personal:</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    plt.figure()<span class="op">;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    sns.jointplot(x<span class="op">=</span>data[i], y<span class="op">=</span>data[<span class="st">&quot;Spent&quot;</span>], hue <span class="op">=</span>data[<span class="st">&quot;Clusters&quot;</span>], kind<span class="op">=</span><span class="st">&quot;kde&quot;</span>, palette<span class="op">=</span>pal)<span class="op">;</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
 <pre><code>&lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005D6230D0&gt;
+<<<<<<< HEAD
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005D85C1C0&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005D4E30A0&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005947A040&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005CC910D0&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005D8D2550&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005D3B6940&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005D4E0370&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005C9C0310&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005D5D98B0&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005D6E0190&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003C03F070&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005CAEE070&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x0000000059591100&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005CB686D0&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005D577400&gt;
 &lt;Figure size 800x550 with 0 Axes&gt;
-&lt;seaborn.axisgrid.JointGrid object at 0x000000005CB32700&gt;</code></pre>
+&lt;seaborn.axisgrid.JointGrid object at 0x000000005D7A6550&gt;</code></pre>
+=======
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A20C1C0&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A79A040&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A283550&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A5AEA60&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A5873A0&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A2833A0&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A6C5550&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x0000000039F44280&gt;
+&lt;Figure size 800x550 with 0 Axes&gt;
+&lt;seaborn.axisgrid.JointGrid object at 0x000000003A291520&gt;</code></pre>
+>>>>>>> af14304292c0b16e3e73f7ec8e9c405d4e77f0c7
 <p><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-21.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-22.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-23.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-24.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-25.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-26.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-27.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-28.png" width="576" /><img src="cluster_seg_files/figure-html5/unnamed-chunk-25-29.png" width="576" /></p>
 </div>
 <p><strong>Points to be noted:</strong></p>
@@ -2941,7 +5560,7 @@ col3  2212.0  7.307797e-17  1.221956  ... -0.022692  0.799895  6.611222
 </ul>
 <h1 id="conclusion">Conclusion</h1>
 <p>In this project, I performed unsupervised clustering. I did use dimensionality reduction followed by agglomerative clustering. I came up with 4 clusters and further used them in profiling customers in clusters according to their family structures and income/spending. This can be used in planning better marketing strategies.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
